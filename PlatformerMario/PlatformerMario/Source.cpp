@@ -13,11 +13,18 @@ SDL_Window* g_window = nullptr;
 bool InitSDL();
 void CloseSDL();
 
+bool Update();
+
 int main(int argc, char* args[])
 {
 	if (InitSDL())
 	{
-		SDL_Delay(5000);
+		bool quit = false;
+
+		while (!quit)
+		{
+			quit = Update();
+		}
 	}
 
 	CloseSDL();
@@ -60,4 +67,30 @@ void CloseSDL()
 
 	IMG_Quit();
 	SDL_Quit();
+}
+
+bool Update()
+{
+	SDL_Event e;
+
+	//cout << "Ticking..." << endl;
+
+	SDL_PollEvent(&e);
+
+	switch (e.type)
+	{
+		//click the 'X' to quit
+	case SDL_QUIT:
+		return true;
+		break;
+	case SDL_KEYDOWN:
+		switch (e.key.keysym.sym)
+		{
+		case SDLK_ESCAPE:
+			return true;
+			break;
+		}
+	}
+
+	return false;
 }
