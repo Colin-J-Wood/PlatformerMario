@@ -8,8 +8,6 @@
 
 using namespace std;
 
-#undef main
-
 SDL_Window* g_window = nullptr;
 
 bool InitSDL();
