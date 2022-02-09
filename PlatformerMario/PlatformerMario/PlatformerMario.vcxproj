@@ -146,9 +146,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Commons.h" />
+    <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\test.bmp" />
