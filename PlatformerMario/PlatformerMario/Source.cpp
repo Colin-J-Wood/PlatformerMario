@@ -7,6 +7,7 @@
 #include "Constants.h"
 #include "Texture2D.h"
 #include "Commons.h"
+#include "GameScreen.h"
 
 using namespace std;
 
