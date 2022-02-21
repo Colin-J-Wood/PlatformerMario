@@ -162,7 +162,13 @@
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Images\entity\Koopa.png" />
+    <Image Include="Images\entity\Luigi.png" />
+    <Image Include="Images\entity\Mario.png" />
+    <Image Include="Images\item\Coin.png" />
+    <Image Include="Images\level\BackgroundMB.png" />
     <Image Include="Images\test.bmp" />
+    <Image Include="Images\tile\PowBlock.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

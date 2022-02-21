@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\tile">
+      <UniqueIdentifier>{744764cb-a20e-4f05-9694-c9cc7609c908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\level">
+      <UniqueIdentifier>{7cb49ebe-74d9-4320-9027-a6479382baac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\item">
+      <UniqueIdentifier>{5e225f49-362e-46f7-9ad0-82cec71c5825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\entity">
+      <UniqueIdentifier>{f76b62ee-1f4a-42c2-a447-7383d887fd2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -54,6 +66,24 @@
   <ItemGroup>
     <Image Include="Images\test.bmp">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\level\BackgroundMB.png">
+      <Filter>Resource Files\level</Filter>
+    </Image>
+    <Image Include="Images\entity\Koopa.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\entity\Luigi.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\entity\Mario.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\item\Coin.png">
+      <Filter>Resource Files\item</Filter>
+    </Image>
+    <Image Include="Images\tile\PowBlock.png">
+      <Filter>Resource Files\tile</Filter>
     </Image>
   </ItemGroup>
 </Project>
