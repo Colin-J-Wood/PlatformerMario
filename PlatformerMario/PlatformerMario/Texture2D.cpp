@@ -8,6 +8,9 @@ using namespace std;
 Texture2D::Texture2D(SDL_Renderer* renderer)
 {
 	m_renderer = renderer;
+	m_width = 0;
+	m_height = 0;
+	m_texture = nullptr;
 }
 
 Texture2D::~Texture2D()

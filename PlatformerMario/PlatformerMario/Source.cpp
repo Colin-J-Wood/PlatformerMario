@@ -139,10 +139,10 @@ bool Update()
 
 void Render()
 {
-	game_screen_manager->Render();
-
 	SDL_SetRenderDrawColor(g_renderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(g_renderer);
+
+	game_screen_manager->Render();
 
 	//update the screen
 	SDL_RenderPresent(g_renderer);
