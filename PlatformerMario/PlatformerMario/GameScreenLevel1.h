@@ -3,6 +3,8 @@
 #include <SDL_image.h>
 #include "GameScreen.h"
 #include "Texture2D.h"
+#include "Mario.h"
+#include "Luigi.h"
 
 class GameScreenLevel1 :
     public GameScreen
@@ -14,6 +16,8 @@ public:
     void Render() override;
     void Update(float deltaTime, SDL_Event e) override;
 private:
+    Mario* mario;
+    Luigi* luigi;
     bool SetUpLevel();
 
     Texture2D* m_background_texture;

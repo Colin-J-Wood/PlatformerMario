@@ -17,6 +17,8 @@ struct Vector2D
 		x = initial_x;
 		y = initial_y;
 	}
+
+	
 };
 
 enum SCREENS
@@ -29,3 +31,8 @@ enum SCREENS
 	SCREEN_HIGHSCORES
 };
 
+enum FACING
+{
+	FACING_LEFT,
+	FACING_RIGHT
+};
