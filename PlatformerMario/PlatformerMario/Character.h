@@ -38,6 +38,7 @@ public:
 	Vector2D GetPosition();
 	float GetCollisionRadius();
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
+	Texture2D* GetTexture();
 
 	Vector2D m_target_velocity = Vector2D(100.0f, 0.0f);
 };

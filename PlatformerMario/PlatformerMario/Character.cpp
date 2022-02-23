@@ -92,3 +92,8 @@ float Character::GetCollisionRadius()
 {
 	return m_collision_radius;
 }
+
+Texture2D* Character::GetTexture()
+{
+	return m_texture;
+}
