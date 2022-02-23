@@ -6,13 +6,14 @@ Luigi::Luigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 	m_position = start_position;
 	m_texture = new Texture2D(renderer);
 	m_facing_direction = FACING_RIGHT;
+	m_collision_radius = PLAYER_COLLISION_RADIUS;
 
 	if (!m_texture->LoadFromFile(imagePath))
 	{
 		cout << "Failed to load character texture!" << endl;
 	}
 
-	m_target_velocity = Vector2D(200.0f, 0.0f);
+	m_target_velocity = PLAYER_SPEED;
 }
 
 Luigi::~Luigi()

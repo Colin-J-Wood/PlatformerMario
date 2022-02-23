@@ -87,3 +87,8 @@ void Character::MoveRight(float deltaTime)
 	m_position.x += m_velocity.x * deltaTime;
 	m_position.y += m_velocity.y * deltaTime;
 }
+
+float Character::GetCollisionRadius()
+{
+	return m_collision_radius;
+}

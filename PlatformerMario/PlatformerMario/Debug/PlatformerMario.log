@@ -1,5 +1,4 @@
-﻿  GameScreenLevel1.cpp
-  GameScreenManager.cpp
-  Luigi.cpp
-  Generating Code...
-  PlatformerMario.vcxproj -> C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe
+﻿  Collisions.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(40,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(40,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

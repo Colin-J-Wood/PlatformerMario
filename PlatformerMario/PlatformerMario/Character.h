@@ -5,6 +5,7 @@
 #include <string>
 #include "Commons.h"
 #include "Texture2D.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -23,6 +24,8 @@ protected:
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
 
+	float m_collision_radius;
+
 public:
 	Character();
 	Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position);
@@ -30,8 +33,11 @@ public:
 
 	virtual void Render();
 	virtual void Update(float deltaTime, SDL_Event e);
+
 	void SetPosition(Vector2D new_position);
 	Vector2D GetPosition();
+	float GetCollisionRadius();
+	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 
 	Vector2D m_target_velocity = Vector2D(100.0f, 0.0f);
 };
