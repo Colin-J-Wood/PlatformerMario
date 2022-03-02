@@ -25,6 +25,9 @@
     <Filter Include="Resource Files\entity">
       <UniqueIdentifier>{f76b62ee-1f4a-42c2-a447-7383d887fd2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\maps">
+      <UniqueIdentifier>{26f7eba6-bddb-4d64-8271-9da85fe3cc7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -52,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Collisions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,6 +92,9 @@
     <ClInclude Include="Collisions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LevelMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\test.bmp">
@@ -109,5 +118,13 @@
     <Image Include="Images\tile\PowBlock.png">
       <Filter>Resource Files\tile</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Maps\level1.txt">
+      <Filter>Resource Files\maps</Filter>
+    </Text>
+    <Text Include="Maps\level2.txt">
+      <Filter>Resource Files\maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

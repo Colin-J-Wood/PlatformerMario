@@ -40,17 +40,12 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	{
 		cout << "Box hit!" << endl;
 	}
-
-	if (Collisions::Instance()->PerPixel(mario, luigi))
-	{
-		cout << "Pixel hit!" << endl;
-	}
 }
 
 bool GameScreenLevel1::SetUpLevel()
 {
 	m_background_texture = new Texture2D(m_renderer);
-	if (!m_background_texture->LoadFromFile("Images/test.bmp"))
+	if (!m_background_texture->LoadFromFile("Images/level/BackgroundMB.png"))
 	{
 		cout << "Failed to load background texture!" << endl;
 		return false;
@@ -59,6 +54,8 @@ bool GameScreenLevel1::SetUpLevel()
 	//set up the player character
 	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 330));
 	luigi = new Luigi(m_renderer, "Images/entity/Luigi.png", Vector2D(256, 330));
+
+	m_levelmap = new LevelMap("Maps/level1.txt",64);
 
 	return true;
 }

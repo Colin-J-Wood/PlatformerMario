@@ -37,6 +37,15 @@ enum FACING
 	FACING_RIGHT
 };
 
+enum TILETYPE
+{
+	AIR = 0,
+	FLOOR = 1,
+	PLATFORM = 2,
+	OBJECT = 3,
+	LAVA = 4
+};
+
 struct Rect2D
 {
 	float x;

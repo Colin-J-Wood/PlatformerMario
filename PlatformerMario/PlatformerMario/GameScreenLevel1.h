@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include "GameScreen.h"
 #include "Texture2D.h"
+#include "LevelMap.h"
 #include "Mario.h"
 #include "Luigi.h"
 
@@ -21,5 +22,6 @@ private:
     bool SetUpLevel();
 
     Texture2D* m_background_texture;
+    LevelMap* m_levelmap;
 };
 

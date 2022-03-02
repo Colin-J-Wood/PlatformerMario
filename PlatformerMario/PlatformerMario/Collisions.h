@@ -15,6 +15,5 @@ public:
 
 	bool Circle(Vector2D position1, Vector2D position2, float radius1, float radius2);
 	bool Box(Rect2D rect1, Rect2D rect2);
-	bool PerPixel(Character* character1, Character* character2);
 };
 
