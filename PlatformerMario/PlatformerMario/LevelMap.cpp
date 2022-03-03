@@ -63,13 +63,13 @@ vector<TILETYPE> LevelMap::ReadLine()
 }
 
 //x,y are tile indexes, not coordinate positions!
-TILETYPE LevelMap::GetTileAt(unsigned int x, unsigned int y)
+TILETYPE LevelMap::GetTileAt(int x, int y)
 {
 	//boundary safe lookup, return AIR if it's not a valid index of the vector.
 	TILETYPE tiletype = AIR;
 	vector<TILETYPE> row;
 
-	if (y > map.size())
+	if ((y >= map.size()) || (y < 0))
 	{
 		//uncomment to debug.
 		cout << "Invalid map height index, counting as AIR." << endl;
@@ -80,7 +80,7 @@ TILETYPE LevelMap::GetTileAt(unsigned int x, unsigned int y)
 		row = map[y];
 	}
 
-	if (x > row.size())
+	if ((x >= row.size()) || (x < 0))
 	{
 		//uncomment to debug.
 		cout << "Invalid map width index, counting as AIR." << endl;
@@ -99,7 +99,7 @@ void LevelMap::SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype)
 
 	//boundary safe vector setting.
 	//exit this function early if the index passed is invalid.
-	if (y > map.size())
+	if ((y >= map.size()) || (y < 0))
 	{
 		cout << "Invalid map height index, rejecting tile setter." << endl;
 		return;
@@ -109,7 +109,7 @@ void LevelMap::SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype)
 		row = map[y];
 	}
 
-	if (x > map.size())
+	if ((x >= row.size()) || (x < 0))
 	{
 		cout << "Invalid map width index, rejecting tile setter." << endl;
 		return;

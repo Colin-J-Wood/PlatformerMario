@@ -37,13 +37,23 @@ enum FACING
 	FACING_RIGHT
 };
 
+//list of tile types for levelmap to read as integers.  expand or modify the values as necessary.
 enum TILETYPE
 {
 	AIR = 0,
-	FLOOR = 1,
-	PLATFORM = 2,
+	PLATFORM = 1, //some checks, such as up, right and left, won't see a platform, as the player should be able to jump through it.
+	FLOOR = 2,
 	OBJECT = 3,
 	LAVA = 4
+};
+
+//list of blocking directions for characters that test for block.
+enum BLOCKDIRECTION
+{
+	RIGHT = 0,
+	UP = 1,
+	DOWN = 2,
+	LEFT = 3
 };
 
 struct Rect2D

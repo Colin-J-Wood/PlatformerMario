@@ -39,8 +39,6 @@ void Character::Render()
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	//cout << "Ticking..." << endl;
-
 	if (m_moving_left)
 	{
 		MoveLeft(deltaTime);
@@ -50,18 +48,10 @@ void Character::Update(float deltaTime, SDL_Event e)
 		MoveRight(deltaTime);
 	}
 
-	//cout << "Left: " << m_moving_left << endl;
-	//cout << "Right: " << m_moving_right << endl;
-}
-
-void Character::SetPosition(Vector2D new_position)
-{
-	m_position = new_position;
-}
-
-Vector2D Character::GetPosition()
-{
-	return m_position;
+	if (m_isJumping)
+	{
+		Jump(deltaTime);
+	}
 }
 
 void Character::MoveLeft(float deltaTime)
@@ -73,7 +63,6 @@ void Character::MoveLeft(float deltaTime)
 	m_velocity = Vector2D(-m_target_velocity.x, m_velocity.y);
 
 	m_position.x += m_velocity.x * deltaTime;
-	m_position.y += m_velocity.y * deltaTime;
 }
 
 void Character::MoveRight(float deltaTime)
@@ -85,15 +74,69 @@ void Character::MoveRight(float deltaTime)
 	m_velocity = Vector2D(m_target_velocity.x, m_velocity.y);
 
 	m_position.x += m_velocity.x * deltaTime;
+}
+
+void Character::Jump(float deltaTime)
+{
+	//target velocity y provides target jump speed.
+	m_velocity = Vector2D(m_velocity.x, m_target_velocity.y);
+	m_jumpTimeElapsed += deltaTime;
+	//stop jumping when jump timer has elapsed.
+	if (m_jumpTimeElapsed > m_jumpTime)
+	{
+		m_jumpTimeElapsed = 0.0f;
+		m_isJumping = false;
+		m_isFalling = true;
+	}
+
 	m_position.y += m_velocity.y * deltaTime;
 }
 
-float Character::GetCollisionRadius()
+//add a fixed gravity speed to this character
+//as fixed falling is more responsive for a platformer.
+void Character::AddGravity(float strength, float deltaTime)
 {
-	return m_collision_radius;
+	if (m_isFalling)
+	{
+		m_position.y += strength * deltaTime;
+	}
 }
 
-Texture2D* Character::GetTexture()
+//check for blocks above, below, to the right and left of this character
+//and set the array accordingly so tile collision blocks properly.
+//don't invoke this method if you want the object to clip through tiles.
+void Character::CheckBlocks(LevelMap* map)
 {
-	return m_texture;
+	//perform each of these checks, and correct the object's position accordingly.
+	//first get the player's tile location in accordance to its texture's center.
+	int tile_positionX = (m_position.x + (m_texture->GetWidth() / 2)) / map->tileSize;
+	int tile_positionY = (m_position.y + (m_texture->GetHeight() / 2)) / map->tileSize;
+
+	//next, test the tiles around that tile position in all four directions.
+	//this data can be used later by other methods.
+	m_blockResult[RIGHT] = map->GetTileAt(tile_positionX + 1, tile_positionY);
+	m_blockResult[UP] = map->GetTileAt(tile_positionX, tile_positionY - 1);
+	m_blockResult[LEFT] = map->GetTileAt(tile_positionX - 1, tile_positionY);
+	m_blockResult[DOWN] = map->GetTileAt(tile_positionX, tile_positionY + 1);
+
+	//now make positional corrections based on the tile results, that way the player is correctly clipped before the next frame.
+	if ((m_blockResult[RIGHT] > PLATFORM) && (m_position.x < (tile_positionX + 1)* map->tileSize)) m_position.x = tile_positionX * map->tileSize;
+	if ((m_blockResult[LEFT] > PLATFORM) && (m_position.x < (tile_positionX - 1) * map->tileSize)) m_position.x = tile_positionX * map->tileSize;
+	if ((m_blockResult[UP] > PLATFORM) && (m_position.y < (tile_positionY + 1) * map->tileSize))
+	{
+		//cancel jump if the player collided with a tile above them.
+		m_position.y = tile_positionY * map->tileSize;
+		m_isJumping = false;
+	}
+	if ((m_blockResult[DOWN] > AIR) && (m_position.y < (tile_positionY - 1) * map->tileSize))
+	{
+		m_position.y = tile_positionY * map->tileSize;
+		m_isFalling = false;
+		m_isJumping = false;
+	}
+	else
+	{
+		//character should fall if there is no tile beneath them.
+		m_isFalling = true;
+	}
 }

@@ -18,7 +18,7 @@ public:
 	~LevelMap();
 
 	void LoadLevel(const char* filename);
-	TILETYPE GetTileAt(unsigned int x, unsigned int y);
+	TILETYPE GetTileAt(int x, int y);
 	void SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype);
 
 	unsigned int tileSize = DEFAULT_TILESIZE;

@@ -1,5 +1,10 @@
 #include "Luigi.h"
 
+Luigi::Luigi()
+{
+
+}
+
 Luigi::Luigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 {
 	m_renderer = renderer;
@@ -38,6 +43,11 @@ void Luigi::Update(float deltaTime, SDL_Event e)
 			m_moving_right = true;
 
 			break;
+		case SDLK_SPACE:
+			//falling is only still true if tile checks force gravity to stay in effect.
+			if (!m_isFalling) m_isJumping = true;
+
+			break;
 		}
 
 		break;
@@ -52,7 +62,17 @@ void Luigi::Update(float deltaTime, SDL_Event e)
 			m_moving_right = false;
 
 			break;
+		case SDLK_SPACE:
+			//stop jumping immediately if the jump key was released
+			if (m_isJumping)
+			{
+				m_isJumping = false;
+				m_isFalling = true;
+			}
+
+			break;
 		}
+
 		break;
 	}
 }

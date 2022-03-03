@@ -31,6 +31,13 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	mario->Update(deltaTime, e);
 	luigi->Update(deltaTime, e);
 
+	//always check blocks before applying gravity.
+	mario->CheckBlocks(m_levelmap);
+	luigi->CheckBlocks(m_levelmap);
+
+	mario->AddGravity(400.0f, deltaTime);
+	luigi->AddGravity(400.0f, deltaTime);
+
 	if (Collisions::Instance()->Circle(mario->GetPosition(),luigi->GetPosition(),mario->GetCollisionRadius(), luigi->GetCollisionRadius()))
 	{
 		cout << "Circle hit!" << endl;
@@ -55,7 +62,7 @@ bool GameScreenLevel1::SetUpLevel()
 	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 330));
 	luigi = new Luigi(m_renderer, "Images/entity/Luigi.png", Vector2D(256, 330));
 
-	m_levelmap = new LevelMap("Maps/level1.txt",64);
+	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
 
 	return true;
 }
