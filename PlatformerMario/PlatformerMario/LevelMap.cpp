@@ -29,6 +29,9 @@ void LevelMap::LoadLevel(const char* filename)
 		return;
 	}
 
+	//debug information for tilemappings.
+	cout << "tilemap loaded:" << endl;
+
 	//read all the lines, filling the map.
 	while (!file.eof())
 	{
@@ -36,7 +39,7 @@ void LevelMap::LoadLevel(const char* filename)
 		//so we load all lines into the vector to get our map.
 		map.push_back(ReadLine());
 	}
-	
+
 	file.close();
 }
 
@@ -50,13 +53,14 @@ vector<TILETYPE> LevelMap::ReadLine()
 	getline(file, lineOfText);
 
 	//read for integers between commas
+	cout << lineOfText << endl;
 	stringstream ss(lineOfText);
 	while (ss.good())
 	{
 		string substr;
 		getline(ss, substr, ',');
 		//validate it is a proper tile number when converting to the enum
-		tileLine.push_back(TILETYPE (stoi(substr)));
+		tileLine.push_back((TILETYPE) (stoi(substr)));
 	}
 
 	return tileLine;
@@ -72,7 +76,7 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 	if ((y >= map.size()) || (y < 0))
 	{
 		//uncomment to debug.
-		cout << "Invalid map height index, counting as AIR." << endl;
+		//cout << "Invalid map height index, counting as AIR." << endl;
 		return AIR;
 	}
 	else
@@ -83,7 +87,7 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 	if ((x >= row.size()) || (x < 0))
 	{
 		//uncomment to debug.
-		cout << "Invalid map width index, counting as AIR." << endl;
+		//cout << "Invalid map width index, counting as AIR." << endl;
 		return AIR;
 	}
 	else
@@ -93,7 +97,7 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 }
 
 //x,y are tile indexes, not coordinate positions!
-void LevelMap::SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype)
+void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 {
 	vector<TILETYPE> row;
 
@@ -101,7 +105,7 @@ void LevelMap::SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype)
 	//exit this function early if the index passed is invalid.
 	if ((y >= map.size()) || (y < 0))
 	{
-		cout << "Invalid map height index, rejecting tile setter." << endl;
+		//cout << "Invalid map height index, rejecting tile setter." << endl;
 		return;
 	}
 	else
@@ -111,7 +115,7 @@ void LevelMap::SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype)
 
 	if ((x >= row.size()) || (x < 0))
 	{
-		cout << "Invalid map width index, rejecting tile setter." << endl;
+		//cout << "Invalid map width index, rejecting tile setter." << endl;
 		return;
 	}
 	else

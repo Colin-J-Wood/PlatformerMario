@@ -44,7 +44,7 @@ bool Collisions::Circle(Vector2D position1, Vector2D position2, float radius1, f
 {
 	Vector2D vec = Vector2D((position1.x - position2.x), (position1.y - position2.y));
 	double distance = sqrt((vec.x * vec.x) + (vec.y * vec.y));
-	double combined_distance = double (radius1) + double (radius2);
+	double combined_distance = (double) (radius1) + (double) (radius2);
 
 	return distance < combined_distance;
 }

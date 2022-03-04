@@ -84,6 +84,7 @@ void Character::Jump(float deltaTime)
 	//stop jumping when jump timer has elapsed.
 	if (m_jumpTimeElapsed > m_jumpTime)
 	{
+		cout << "Jumping!" << endl;
 		m_jumpTimeElapsed = 0.0f;
 		m_isJumping = false;
 		m_isFalling = true;
@@ -98,6 +99,7 @@ void Character::AddGravity(float strength, float deltaTime)
 {
 	if (m_isFalling)
 	{
+		cout << "Falling!" << endl;
 		m_position.y += strength * deltaTime;
 	}
 }
@@ -108,29 +110,46 @@ void Character::AddGravity(float strength, float deltaTime)
 void Character::CheckBlocks(LevelMap* map)
 {
 	//perform each of these checks, and correct the object's position accordingly.
-	//first get the player's tile location in accordance to its texture's center.
-	int tile_positionX = (m_position.x + (m_texture->GetWidth() / 2)) / map->tileSize;
-	int tile_positionY = (m_position.y + (m_texture->GetHeight() / 2)) / map->tileSize;
+	//first get the player's tile location in accordance to each corner
+	int tile_positionX1 = m_position.x / map->tileSize;
+	int tile_positionY1 = m_position.y / map->tileSize;
+	int tile_positionX2 = (m_position.x + m_texture->GetWidth()) / map->tileSize;
+	int tile_positionY2 = (m_position.y + m_texture->GetHeight()) / map->tileSize;
 
 	//next, test the tiles around that tile position in all four directions.
 	//this data can be used later by other methods.
-	m_blockResult[RIGHT] = map->GetTileAt(tile_positionX + 1, tile_positionY);
-	m_blockResult[UP] = map->GetTileAt(tile_positionX, tile_positionY - 1);
-	m_blockResult[LEFT] = map->GetTileAt(tile_positionX - 1, tile_positionY);
-	m_blockResult[DOWN] = map->GetTileAt(tile_positionX, tile_positionY + 1);
+	//priority is at the feet unless it is on the UP which is the head's center instead
+	m_blockResult[RIGHT] = map->GetTileAt(tile_positionX2 + 1, tile_positionY2);
+	m_blockResult[UP] = map->GetTileAt(tile_positionX1 + (tile_positionX2 - tile_positionX1), tile_positionY1 - 1);
+	m_blockResult[LEFT] = map->GetTileAt(tile_positionX1 - 1, tile_positionY2);
+	m_blockResult[DOWN] = map->GetTileAt(tile_positionX2, tile_positionY2 + 1);
+
+	for (int i = 0; i <= DOWN; i++)
+	{
+		cout << m_blockResult[i] << endl;
+	}
 
 	//now make positional corrections based on the tile results, that way the player is correctly clipped before the next frame.
-	if ((m_blockResult[RIGHT] > PLATFORM) && (m_position.x < (tile_positionX + 1)* map->tileSize)) m_position.x = tile_positionX * map->tileSize;
-	if ((m_blockResult[LEFT] > PLATFORM) && (m_position.x < (tile_positionX - 1) * map->tileSize)) m_position.x = tile_positionX * map->tileSize;
-	if ((m_blockResult[UP] > PLATFORM) && (m_position.y < (tile_positionY + 1) * map->tileSize))
+	if (m_blockResult[RIGHT] > PLATFORM)
+	{
+
+	}
+	if (m_blockResult[LEFT] > PLATFORM)
+	{
+
+	}
+	if (m_blockResult[UP] > PLATFORM)
 	{
 		//cancel jump if the player collided with a tile above them.
-		m_position.y = tile_positionY * map->tileSize;
+		cout << "Hitting head!" << endl;
+		m_position.y = tile_positionY2 * map->tileSize;
 		m_isJumping = false;
 	}
-	if ((m_blockResult[DOWN] > AIR) && (m_position.y < (tile_positionY - 1) * map->tileSize))
+	if (m_blockResult[DOWN] > AIR)
 	{
-		m_position.y = tile_positionY * map->tileSize;
+		//prevent falling
+		cout << "Prevent falling!" << endl;
+		m_position.y = tile_positionY1 * map->tileSize;
 		m_isFalling = false;
 		m_isJumping = false;
 	}

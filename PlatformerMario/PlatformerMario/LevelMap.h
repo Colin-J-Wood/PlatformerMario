@@ -19,7 +19,7 @@ public:
 
 	void LoadLevel(const char* filename);
 	TILETYPE GetTileAt(int x, int y);
-	void SetTileAt(unsigned int x, unsigned int y, TILETYPE tiletype);
+	void SetTileAt(int x, int y, TILETYPE tiletype);
 
 	unsigned int tileSize = DEFAULT_TILESIZE;
 	Vector2D mapDimensions;
