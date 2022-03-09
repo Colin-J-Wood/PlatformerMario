@@ -128,34 +128,4 @@ void Character::CheckBlocks(LevelMap* map)
 	{
 		cout << m_blockResult[i] << endl;
 	}
-
-	//now make positional corrections based on the tile results, that way the player is correctly clipped before the next frame.
-	if (m_blockResult[RIGHT] > PLATFORM)
-	{
-
-	}
-	if (m_blockResult[LEFT] > PLATFORM)
-	{
-
-	}
-	if (m_blockResult[UP] > PLATFORM)
-	{
-		//cancel jump if the player collided with a tile above them.
-		cout << "Hitting head!" << endl;
-		m_position.y = tile_positionY2 * map->tileSize;
-		m_isJumping = false;
-	}
-	if (m_blockResult[DOWN] > AIR)
-	{
-		//prevent falling
-		cout << "Prevent falling!" << endl;
-		m_position.y = tile_positionY1 * map->tileSize;
-		m_isFalling = false;
-		m_isJumping = false;
-	}
-	else
-	{
-		//character should fall if there is no tile beneath them.
-		m_isFalling = true;
-	}
 }

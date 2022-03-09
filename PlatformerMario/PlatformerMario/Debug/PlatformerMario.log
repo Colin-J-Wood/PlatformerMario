@@ -5,6 +5,26 @@ D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Characte
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.cpp(115,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.cpp(116,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.cpp(117,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.cpp(145,34): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.cpp(152,34): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+  Collisions.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameScreenLevel1.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameScreenManager.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  LevelMap.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(76,9): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(87,9): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(106,9): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(116,9): warning C4018: '>=': signed/unsigned mismatch
+  Luigi.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Mario.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+  Generating Code...
   PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe
