@@ -131,8 +131,20 @@ bool Update()
 		}
 	}
 
-	game_screen_manager->Update((float)(new_time - g_old_time) / 1000.0f, e);
+	float delta = (float)new_time - g_old_time;
 	g_old_time = new_time;
+
+	//cap to framerate, avoiding rounding errors with floating point.
+	if (delta < TARGET_MILLISEC)
+	{
+		SDL_Delay(TARGET_MILLISEC - delta);
+		game_screen_manager->Update(TARGET_MILLISEC / 1000.0f, e);
+	}
+	else
+	{
+		game_screen_manager->Update(delta / 1000.0f, e);
+	}	
+
 
 	return false;
 }

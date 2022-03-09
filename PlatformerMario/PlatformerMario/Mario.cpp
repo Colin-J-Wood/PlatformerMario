@@ -21,10 +21,10 @@ Mario::~Mario()
 	m_renderer = nullptr;
 }
 
-void Mario::Update(float deltaTime, SDL_Event e)
+void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
 	//the only difference in mario's update is his control scheme.
-	Character::Update(deltaTime, e);
+	Character::Update(deltaTime, e, map);
 
 	switch (e.type)
 	{
@@ -39,9 +39,9 @@ void Mario::Update(float deltaTime, SDL_Event e)
 			m_moving_right = true;
 
 			break;
-		case SDLK_LSHIFT:
+		case SDLK_RSHIFT:
 			//falling is only still true if tile checks force gravity to stay in effect.
-			if (!m_isFalling) m_isJumping = true;
+			m_ctrlJump = true;
 
 			break;
 		}
@@ -58,13 +58,10 @@ void Mario::Update(float deltaTime, SDL_Event e)
 			m_moving_right = false;
 
 			break;
-		case SDLK_LSHIFT:
+		case SDLK_RSHIFT:
 			//stop jumping immediately if the jump key was released
-			if (m_isJumping)
-			{
-				m_isJumping = false;
-				m_isFalling = true;
-			}
+			//todo
+			m_ctrlJump = false;
 
 			break;
 		}

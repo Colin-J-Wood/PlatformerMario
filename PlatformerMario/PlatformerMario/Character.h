@@ -22,7 +22,6 @@ protected:
 	SDL_Renderer* m_renderer;
 	Vector2D m_position;
 	Vector2D m_velocity;
-	float m_jumpTime = PLAYER_JUMPTIME;
 	float m_collision_radius;
 	Texture2D* m_texture;
 	FACING m_facing_direction; //moved to here for inheritance.
@@ -30,9 +29,9 @@ protected:
 	//states
 	bool m_moving_left = false;
 	bool m_moving_right = false;
-	bool m_isJumping;
-	bool m_isFalling;
-	float m_jumpTimeElapsed = 0.0f;
+	bool m_jumping;
+	bool m_canJump;
+	bool m_ctrlJump;
 	TILETYPE m_blockResult[4];
 
 public:
@@ -42,7 +41,7 @@ public:
 
 	//methods
 	virtual void Render();
-	virtual void Update(float deltaTime, SDL_Event e);
+	virtual void Update(float deltaTime, SDL_Event e, LevelMap* map);
 	//make gravity virtual just in case the object wants accelerating gravity instead
 	virtual void AddGravity(float strength, float deltaTime);
 	void CheckBlocks(LevelMap* map);
@@ -50,7 +49,6 @@ public:
 	//inlines
 	void SetPosition(Vector2D new_position) { m_position = new_position; };
 	Vector2D GetPosition() { return m_position; };
-	void SetJumpTime(float new_jumpTime) { m_jumpTime = new_jumpTime; };
 	float GetCollisionRadius() { return m_collision_radius; };
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 	Texture2D* GetTexture() { return m_texture; };

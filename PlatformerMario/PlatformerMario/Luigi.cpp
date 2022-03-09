@@ -26,9 +26,9 @@ Luigi::~Luigi()
 	m_renderer = nullptr;
 }
 
-void Luigi::Update(float deltaTime, SDL_Event e)
+void Luigi::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
-	Character::Update(deltaTime, e);
+	Character::Update(deltaTime, e, map);
 
 	switch (e.type)
 	{
@@ -45,7 +45,7 @@ void Luigi::Update(float deltaTime, SDL_Event e)
 			break;
 		case SDLK_SPACE:
 			//falling is only still true if tile checks force gravity to stay in effect.
-			if (!m_isFalling) m_isJumping = true;
+			m_ctrlJump = true;
 
 			break;
 		}
@@ -64,11 +64,8 @@ void Luigi::Update(float deltaTime, SDL_Event e)
 			break;
 		case SDLK_SPACE:
 			//stop jumping immediately if the jump key was released
-			if (m_isJumping)
-			{
-				m_isJumping = false;
-				m_isFalling = true;
-			}
+			//todo
+			m_ctrlJump = false;
 
 			break;
 		}

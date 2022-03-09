@@ -28,8 +28,8 @@ void GameScreenLevel1::Render()
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
-	mario->Update(deltaTime, e);
-	luigi->Update(deltaTime, e);
+	mario->Update(deltaTime, e, m_levelmap);
+	luigi->Update(deltaTime, e, m_levelmap);
 
 	if (Collisions::Instance()->Circle(mario->GetPosition(),luigi->GetPosition(),mario->GetCollisionRadius(), luigi->GetCollisionRadius()))
 	{
