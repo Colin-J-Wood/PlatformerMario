@@ -26,5 +26,12 @@ private:
     LevelMap* m_levelmap;
 
     POWBlock* m_powBlock;
+
+    bool m_screenshake;
+    float m_shake_time;
+    float m_wobble;
+    float m_background_yPos;
+
+    void DoScreenshake();
 };
 

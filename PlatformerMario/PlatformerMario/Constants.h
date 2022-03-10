@@ -13,3 +13,4 @@
 #define DEFAULT_TILESIZE 32
 
 #define GRAVITY 1.5f
+#define SHAKE_DURATION 0.5f

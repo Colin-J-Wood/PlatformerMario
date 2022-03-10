@@ -23,7 +23,7 @@ GameScreenLevel1::~GameScreenLevel1()
 
 void GameScreenLevel1::Render()
 {
-	m_background_texture->Render(Vector2D(), SDL_FLIP_NONE);
+	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
 
 	mario->Render();
 	luigi->Render();
@@ -51,6 +51,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		if ((mario->GetVelocity().y > 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
+			DoScreenshake();
 
 			//set mario's velocity so he falls from the block, then correct his positioning.
 			mario->SetVelocity(Vector2D(mario->GetVelocity().x, 0.0f));
@@ -63,10 +64,27 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		if ((luigi->GetVelocity().y > 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
+			DoScreenshake();
 
 			//set mario's velocity so he falls from the block, then correct his positioning.
 			luigi->SetVelocity(Vector2D(luigi->GetVelocity().x, 0.0f));
 			luigi->SetPosition(Vector2D(luigi->GetPosition().x, m_powBlock->GetPosition().y + m_powBlock->GetHeight()));
+		}
+	}
+
+	//do the screenshake if required.
+	if (m_screenshake)
+	{
+		m_shake_time -= deltaTime;
+		m_wobble++;
+		m_background_yPos = sin(m_wobble);
+		m_background_yPos *= 3.0f;
+
+		//end shake after duration
+		if (m_shake_time <= 0.0f)
+		{
+			m_screenshake = false;
+			m_background_yPos = 0.0f;
 		}
 	}
 }
@@ -88,4 +106,11 @@ bool GameScreenLevel1::SetUpLevel()
 	m_powBlock = new POWBlock(m_renderer, m_levelmap);
 
 	return true;
+}
+
+void GameScreenLevel1::DoScreenshake()
+{
+	m_screenshake = true;
+	m_shake_time = SHAKE_DURATION;
+	m_wobble = 0.0f;
 }
