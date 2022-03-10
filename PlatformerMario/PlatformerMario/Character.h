@@ -49,6 +49,8 @@ public:
 	//inlines
 	void SetPosition(Vector2D new_position) { m_position = new_position; };
 	Vector2D GetPosition() { return m_position; };
+	Vector2D GetVelocity() { return m_velocity; };
+	void SetVelocity(Vector2D velocity) { m_velocity = velocity; };
 	float GetCollisionRadius() { return m_collision_radius; };
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 	Texture2D* GetTexture() { return m_texture; };

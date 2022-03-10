@@ -17,8 +17,6 @@ struct Vector2D
 		x = initial_x;
 		y = initial_y;
 	}
-
-	
 };
 
 enum SCREENS
@@ -38,11 +36,12 @@ enum FACING
 };
 
 //list of tile types for levelmap to read as integers.  expand or modify the values as necessary.
+//use this as a reference table when creating the map.
 enum TILETYPE
 {
 	AIR = 0,
-	PLATFORM = 1, //some checks, such as up, right and left, won't see a platform, as the player should be able to jump through it.
-	FLOOR = 2,
+	FLOOR = 1,
+	PLATFORM = 2, //some checks, such as up, right and left, won't see a platform, as the player should be able to jump through it.
 	OBJECT = 3,
 	LAVA = 4
 };

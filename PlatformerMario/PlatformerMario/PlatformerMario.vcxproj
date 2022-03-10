@@ -155,6 +155,7 @@
     <ClCompile Include="LevelMap.cpp" />
     <ClCompile Include="Luigi.cpp" />
     <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="POWBlock.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="LevelMap.h" />
     <ClInclude Include="Luigi.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="POWBlock.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 #pragma once
 
 //screen dimensions
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 511
+#define SCREEN_HEIGHT 407
 #define TARGET_MILLISEC 4
 
 #define PLAYER_SPEED Vector2D(75.0f, 225.0f)

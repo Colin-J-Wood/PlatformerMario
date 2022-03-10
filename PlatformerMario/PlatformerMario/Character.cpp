@@ -72,8 +72,8 @@ void Character::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		if (m_velocity.x > 0.0f) m_velocity.x = 0.0f;
 	}
 
-	//make the player go immediately downward if they hit a tile above them.
-	if ((m_blockResult[UP] != AIR) && (m_velocity.y < 0.0f)) m_velocity.y = 0.0f;
+	//make the player go immediately downward if they hit a tile above them, unlesss it's a platform
+	if ((m_blockResult[UP] == FLOOR) && (m_velocity.y < 0.0f)) m_velocity.y = 0.0f;
 	//then react to the floor in here.
 	//don't allow another jump until the jump has stopped moving upward.
 	if (m_blockResult[DOWN] == AIR)

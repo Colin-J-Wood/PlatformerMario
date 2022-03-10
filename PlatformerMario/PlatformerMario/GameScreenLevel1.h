@@ -6,6 +6,7 @@
 #include "LevelMap.h"
 #include "Mario.h"
 #include "Luigi.h"
+#include "POWBlock.h"
 
 class GameScreenLevel1 :
     public GameScreen
@@ -23,5 +24,7 @@ private:
 
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
+
+    POWBlock* m_powBlock;
 };
 
