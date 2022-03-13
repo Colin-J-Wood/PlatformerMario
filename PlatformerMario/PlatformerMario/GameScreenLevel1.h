@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include <vector>
+#include <algorithm>
+#include "Koopa.h"
 #include "GameScreen.h"
 #include "Texture2D.h"
 #include "LevelMap.h"
@@ -18,6 +21,8 @@ public:
     void Render() override;
     void Update(float deltaTime, SDL_Event e) override;
 private:
+    vector<Koopa*> m_enemies;
+
     Mario* mario;
     Luigi* luigi;
     bool SetUpLevel();
@@ -33,5 +38,8 @@ private:
     float m_background_yPos;
 
     void DoScreenshake();
+
+    void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);
+    void CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed);
 };
 

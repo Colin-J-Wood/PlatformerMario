@@ -75,8 +75,6 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 
 	if ((y >= map.size()) || (y < 0))
 	{
-		//uncomment to debug.
-		//cout << "Invalid map height index, counting as AIR." << endl;
 		return AIR;
 	}
 	else
@@ -86,8 +84,6 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 
 	if ((x >= row.size()) || (x < 0))
 	{
-		//uncomment to debug.
-		//cout << "Invalid map width index, counting as AIR." << endl;
 		return AIR;
 	}
 	else
@@ -105,7 +101,6 @@ void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 	//exit this function early if the index passed is invalid.
 	if ((y >= map.size()) || (y < 0))
 	{
-		//cout << "Invalid map height index, rejecting tile setter." << endl;
 		return;
 	}
 	else
@@ -115,7 +110,6 @@ void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 
 	if ((x >= row.size()) || (x < 0))
 	{
-		//cout << "Invalid map width index, rejecting tile setter." << endl;
 		return;
 	}
 	else

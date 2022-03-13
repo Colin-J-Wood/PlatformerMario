@@ -34,9 +34,11 @@ protected:
 	bool m_ctrlJump;
 	TILETYPE m_blockResult[4];
 
+	bool m_alive;
+
 public:
 	Character();
-	Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position);
+	Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
 	~Character();
 
 	//methods
@@ -54,8 +56,11 @@ public:
 	float GetCollisionRadius() { return m_collision_radius; };
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 	Texture2D* GetTexture() { return m_texture; };
+	bool GetAlive() { return m_alive; };
+	void SetAlive(bool alive) { m_alive = alive; };
 
 	//variables
 	Vector2D m_target_velocity = PLAYER_SPEED;
+	LevelMap* m_level_map;
 };
 

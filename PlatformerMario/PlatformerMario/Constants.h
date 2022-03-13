@@ -14,3 +14,6 @@
 
 #define GRAVITY 1.5f
 #define SHAKE_DURATION 0.5f
+
+#define KOOPA_INJURED_TIME 10.0f
+#define KOOPA_SPEED Vector2D(35.0f, 75.0f)

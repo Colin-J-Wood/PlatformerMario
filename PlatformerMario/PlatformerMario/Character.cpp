@@ -7,12 +7,14 @@ Character::Character()
 
 }
 
-Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map)
 {
 	m_renderer = renderer;
 	m_position = start_position;
 	m_texture = new Texture2D(renderer);
 	m_facing_direction = FACING_RIGHT;
+	m_level_map = map;
+	m_alive = true;
 
 	if (!m_texture->LoadFromFile(imagePath))
 	{
@@ -55,6 +57,8 @@ void Character::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		m_velocity.x = 0.0f;
 	}
 
+	//give a new map if you want to switch map references
+	m_level_map = map;
 	CheckBlocks(map);
 
 	//positionally correct if there's a tile to left or right, regardless of velocity.
