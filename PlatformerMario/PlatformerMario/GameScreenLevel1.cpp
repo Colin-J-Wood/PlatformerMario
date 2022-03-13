@@ -36,19 +36,11 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	mario->Update(deltaTime, e, m_levelmap);
 	luigi->Update(deltaTime, e, m_levelmap);
 
-	if (Collisions::Instance()->Circle(mario->GetPosition(),luigi->GetPosition(),mario->GetCollisionRadius(), luigi->GetCollisionRadius()))
-	{
-		cout << "Circle hit!" << endl;
-	}
-
-	if (Collisions::Instance()->Box(mario->GetCollisionBox(), luigi->GetCollisionBox()))
-	{
-		cout << "Box hit!" << endl;
-	}
-
+	//collide with pow block
 	if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_powBlock->GetCollisionBox()))
 	{
-		if ((mario->GetVelocity().y > 0.0f) && m_powBlock->isAvailable())
+		//only process this collision if the player was rising into the block
+		if ((mario->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
 			DoScreenshake();
@@ -61,7 +53,8 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_powBlock->GetCollisionBox()))
 	{
-		if ((luigi->GetVelocity().y > 0.0f) && m_powBlock->isAvailable())
+		//only process this collision if the player was rising into the block
+		if ((luigi->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
 			DoScreenshake();

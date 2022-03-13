@@ -1,5 +1,19 @@
-﻿  GameScreenLevel1.cpp
+﻿  GameScreenManager.cpp
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(21,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  GameScreenLevel1.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(21,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  Koopa.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Luigi.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Mario.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(55,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe
