@@ -36,7 +36,7 @@ void Koopa::FlipRightwayUp()
 	}
 	m_injured = false;
 
-	Jump();
+	KoopaJump();
 }
 
 void Koopa::TakeDamage()
@@ -44,10 +44,10 @@ void Koopa::TakeDamage()
 	m_injured = true;
 	m_injured_time = KOOPA_INJURED_TIME;
 
-	Jump();
+	KoopaJump();
 }
 
-void Koopa::Jump()
+void Koopa::KoopaJump()
 {
 	if (!m_jumping)
 	{

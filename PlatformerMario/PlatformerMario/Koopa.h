@@ -17,7 +17,7 @@ public:
     ~Koopa();
 
     void TakeDamage();
-    void Jump();
+    void KoopaJump();
     bool GetInjured() { return m_injured; };
 
     void Render() override;
