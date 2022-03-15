@@ -188,6 +188,10 @@
     <Text Include="Maps\level1.txt" />
     <Text Include="Maps\level2.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\Mario.mp3" />
+    <Media Include="Music\MarioUnderworld.mp3" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

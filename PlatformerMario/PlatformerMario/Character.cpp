@@ -98,7 +98,7 @@ void Character::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		m_position.y -= ((int)(m_position.y + m_texture->GetHeight()) % DEFAULT_TILESIZE);
 	}
 
-	if (m_ctrlJump && !m_jumping && m_canJump)
+	if (m_ctrlJump && !m_jumping && m_canJump && m_velocity.y == 0.0f)
 	{
 		Jump(deltaTime);
 	}

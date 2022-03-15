@@ -28,6 +28,9 @@
     <Filter Include="Resource Files\maps">
       <UniqueIdentifier>{26f7eba6-bddb-4d64-8271-9da85fe3cc7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\sounds">
+      <UniqueIdentifier>{c0bc0ccd-f7a9-4beb-a834-66920bc27a56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -138,5 +141,13 @@
     <Text Include="Maps\level2.txt">
       <Filter>Resource Files\maps</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\Mario.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\MarioUnderworld.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
