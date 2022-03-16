@@ -37,7 +37,7 @@ private:
     float m_wobble;
     float m_background_yPos;
 
-    void DoScreenshake();
+    void DoScreenshake(float deltaTime);
 
     void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);
     void CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed);

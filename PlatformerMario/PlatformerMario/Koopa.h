@@ -10,14 +10,14 @@ private:
     bool m_injured;
     float m_injured_time;
 
-    void FlipRightwayUp();
+    void FlipRightwayUp(float deltaTime);
     
 public:
     Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D start_position, FACING start_facing, Vector2D movement_speed);
     ~Koopa();
 
-    void TakeDamage();
-    void KoopaJump();
+    void TakeDamage(float deltaTime);
+    void KoopaJump(float deltaTime);
     bool GetInjured() { return m_injured; };
 
     void Render() override;

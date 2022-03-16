@@ -23,7 +23,7 @@ Koopa::~Koopa()
 	m_renderer = nullptr;
 }
 
-void Koopa::FlipRightwayUp()
+void Koopa::FlipRightwayUp(float deltaTime)
 {
 	//swap directions
 	if (m_facing_direction = FACING_RIGHT)
@@ -36,22 +36,23 @@ void Koopa::FlipRightwayUp()
 	}
 	m_injured = false;
 
-	KoopaJump();
+	KoopaJump(deltaTime);
 }
 
-void Koopa::TakeDamage()
+void Koopa::TakeDamage(float deltaTime)
 {
 	m_injured = true;
 	m_injured_time = KOOPA_INJURED_TIME;
 
-	KoopaJump();
+	KoopaJump(deltaTime);
 }
 
-void Koopa::KoopaJump()
+void Koopa::KoopaJump(float deltaTime)
 {
 	if (!m_jumping)
 	{
-		m_velocity.y = -m_target_velocity.y;
+		//target velocity y is the jump speed
+		m_velocity.y = -m_target_velocity.y * deltaTime;
 		m_jumping = true;
 		m_canJump = false;
 	}
@@ -109,6 +110,6 @@ void Koopa::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		//count down the injured time.
 		m_injured_time -= deltaTime;
 
-		if (m_injured_time <= 0.0) FlipRightwayUp();
+		if (m_injured_time <= 0.0) FlipRightwayUp(deltaTime);
 	}
 }
