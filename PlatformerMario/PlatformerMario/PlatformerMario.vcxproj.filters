@@ -13,9 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\tile">
+      <UniqueIdentifier>{744764cb-a20e-4f05-9694-c9cc7609c908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\level">
+      <UniqueIdentifier>{7cb49ebe-74d9-4320-9027-a6479382baac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\item">
+      <UniqueIdentifier>{5e225f49-362e-46f7-9ad0-82cec71c5825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\entity">
+      <UniqueIdentifier>{f76b62ee-1f4a-42c2-a447-7383d887fd2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\maps">
+      <UniqueIdentifier>{26f7eba6-bddb-4d64-8271-9da85fe3cc7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\sounds">
+      <UniqueIdentifier>{c0bc0ccd-f7a9-4beb-a834-66920bc27a56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreenLevel1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreenManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Luigi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collisions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POWBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Koopa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,5 +74,80 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Commons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreenLevel1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreenManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Luigi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POWBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Koopa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\test.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\level\BackgroundMB.png">
+      <Filter>Resource Files\level</Filter>
+    </Image>
+    <Image Include="Images\entity\Koopa.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\entity\Luigi.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\entity\Mario.png">
+      <Filter>Resource Files\entity</Filter>
+    </Image>
+    <Image Include="Images\item\Coin.png">
+      <Filter>Resource Files\item</Filter>
+    </Image>
+    <Image Include="Images\tile\PowBlock.png">
+      <Filter>Resource Files\tile</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Maps\level1.txt">
+      <Filter>Resource Files\maps</Filter>
+    </Text>
+    <Text Include="Maps\level2.txt">
+      <Filter>Resource Files\maps</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\Mario.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\MarioUnderworld.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

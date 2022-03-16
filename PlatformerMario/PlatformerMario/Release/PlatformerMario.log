@@ -1,0 +1,4 @@
+﻿  Source.cpp
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+Source.obj : error LNK2001: unresolved external symbol _IMG_Quit
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Release\PlatformerMario.exe : fatal error LNK1120: 1 unresolved externals
