@@ -39,7 +39,7 @@ protected:
 	bool m_ctrlJump;
 	TILETYPE m_blockResult[4];
 
-	bool m_alive;
+	bool m_alive = true;
 
 public:
 	Character();

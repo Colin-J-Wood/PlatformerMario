@@ -173,8 +173,8 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 			if (m_enemies[i]->GetPosition().y > 300.0f)
 			{
 				//is the enemy off screen?
-				if (m_enemies[i]->GetPosition().x < (float)(-m_enemies[i]->GetCollisionBox().width * 0.5f) || 
-					m_enemies[i]->GetPosition().x > SCREEN_WIDTH - (float)(m_enemies[i]->GetCollisionBox().width * 0.55f)) 
+				if (m_enemies[i]->GetPosition().x < 64.0f - m_enemies[i]->GetWidth() || 
+					m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f + m_enemies[i]->GetWidth()) 
 					m_enemies[i]->SetAlive(false);
 			}
 			//now do the update
@@ -207,12 +207,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					{
 						//kill mario
 					}
-
-					//if the enemy is no longer alive, then schedule it for deletion
-					if (!m_enemies[i]->GetAlive())
-					{
-						enemyIndexToDelete = i;
-					}
 				}
 
 				//don't do this if mario is already dying
@@ -227,13 +221,13 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					{
 						//kill mario
 					}
-
-					//if the enemy is no longer alive, then schedule it for deletion
-					if (!m_enemies[i]->GetAlive())
-					{
-						enemyIndexToDelete = i;
-					}
 				}
+			}
+
+			//if the enemy is no longer alive, then schedule it for deletion
+			if (!m_enemies[i]->GetAlive())
+			{
+				enemyIndexToDelete = i;
 			}
 		}
 
