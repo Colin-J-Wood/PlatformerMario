@@ -146,11 +146,11 @@ void Character::AddGravity(float strength, float deltaTime)
 //don't invoke this method if you want the object to clip through tiles.
 void Character::CheckBlocks(LevelMap* map)
 {
-	int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / DEFAULT_TILESIZE;
-	int centralY_position = (int)(m_position.y + (m_texture->GetHeight() * 0.5)) / DEFAULT_TILESIZE;
-	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / DEFAULT_TILESIZE;
+	int centralX_position = (int)(m_position.x + (m_width * 0.5)) / DEFAULT_TILESIZE;
+	int centralY_position = (int)(m_position.y + (m_height * 0.5)) / DEFAULT_TILESIZE;
+	int foot_position = (int)(m_position.y + m_height) / DEFAULT_TILESIZE;
 	int head_position = (int)(m_position.y) / DEFAULT_TILESIZE;
-	int right_position = (int)(m_position.x + m_texture->GetWidth()) / DEFAULT_TILESIZE;
+	int right_position = (int)(m_position.x + m_width) / DEFAULT_TILESIZE;
 	int left_position = (int)(m_position.x) / DEFAULT_TILESIZE;
 
 	//next, test the tiles around that tile position in all four directions.

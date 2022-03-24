@@ -12,11 +12,15 @@ Luigi::Luigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 	m_texture = new Texture2D(renderer);
 	m_facing_direction = FACING_RIGHT;
 	m_collision_radius = PLAYER_COLLISION_RADIUS;
+	
 
 	if (!m_texture->LoadFromFile(imagePath))
 	{
 		cout << "Failed to load character texture!" << endl;
 	}
+
+	m_width = m_texture->GetWidth();
+	m_height = m_texture->GetHeight();
 
 	m_target_velocity = PLAYER_SPEED;
 }
@@ -24,11 +28,6 @@ Luigi::Luigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 Luigi::~Luigi()
 {
 	m_renderer = nullptr;
-}
-
-void Luigi::LuigiDie()
-{
-
 }
 
 void Luigi::Update(float deltaTime, SDL_Event e, LevelMap* map)

@@ -25,6 +25,11 @@ protected:
 	float m_collision_radius;
 	Texture2D* m_texture;
 	FACING m_facing_direction; //moved to here for inheritance.
+	//these two exist to remove issues where a texture might be wider than the character, for sprite sheet use.
+	int m_width;
+	int m_height;
+	Vector2D m_target_velocity;
+	LevelMap* m_level_map;
 
 	//states
 	bool m_moving_left = false;
@@ -52,15 +57,15 @@ public:
 	void SetPosition(Vector2D new_position) { m_position = new_position; };
 	Vector2D GetPosition() { return m_position; };
 	Vector2D GetVelocity() { return m_velocity; };
+	int GetWidth() { return m_width; };
+	int GetHeight() { return m_height; };
 	void SetVelocity(Vector2D velocity) { m_velocity = velocity; };
 	float GetCollisionRadius() { return m_collision_radius; };
-	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
+	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_width, m_height); }
 	Texture2D* GetTexture() { return m_texture; };
 	bool GetAlive() { return m_alive; };
 	void SetAlive(bool alive) { m_alive = alive; };
 
-	//variables
-	Vector2D m_target_velocity = PLAYER_SPEED;
-	LevelMap* m_level_map;
+	Vector2D GetCenterPosition() { return Vector2D(m_position.x + m_width, m_position.y + m_height); };
 };
 

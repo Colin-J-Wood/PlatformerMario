@@ -8,6 +8,7 @@ Koopa::Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D s
 	m_target_velocity = target_speed;
 	m_position = start_position;
 	m_injured = false;
+	m_collision_radius = PLAYER_COLLISION_RADIUS;
 
 	if (!m_texture->LoadFromFile(imagePath))
 	{
@@ -16,6 +17,9 @@ Koopa::Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D s
 
 	m_single_sprite_w = m_texture->GetWidth() / 2;
 	m_single_sprite_h = m_texture->GetHeight();
+
+	m_width = m_single_sprite_w;
+	m_height = m_single_sprite_h;
 }
 
 Koopa::~Koopa()
@@ -56,11 +60,6 @@ void Koopa::KoopaJump(float deltaTime)
 		m_jumping = true;
 		m_canJump = false;
 	}
-}
-
-void Koopa::KoopaDie()
-{
-	//summon death particles
 }
 
 void Koopa::Render()

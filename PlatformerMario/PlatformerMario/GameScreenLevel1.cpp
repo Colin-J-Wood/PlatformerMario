@@ -26,8 +26,6 @@ GameScreenLevel1::~GameScreenLevel1()
 
 void GameScreenLevel1::Render()
 {
-	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
-
 	mario->Render();
 	luigi->Render();
 
@@ -38,6 +36,9 @@ void GameScreenLevel1::Render()
 	{
 		koopa->Render();
 	}
+
+	//render all tiles in front of entities so pipes can hide koopas.
+	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -76,36 +77,35 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
-	//kill any koopas that are currently injured.
-	for (int i = 0; i < m_enemies.size(); i++)
+	//teleport all characters to the other side of the screen if their centre crosses the boundary
+	if (mario->GetCenterPosition().x < 0)
 	{
-		if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_enemies[i]->GetCollisionBox()))
-		{
-			if (m_enemies[i]->GetInjured())
-			{
-				//kill the enemy
-				m_enemies[i]->KoopaDie();
-				m_enemies.erase(m_enemies.begin() + i);
-			}
-			else
-			{
-				//kill the player because the enemy was not injured
-				mario->MarioDie();
-			}
-		}
+		mario->SetPosition(Vector2D(SCREEN_WIDTH - mario->GetWidth(), mario->GetPosition().y));
+	}
+	else if (mario->GetCenterPosition().x > SCREEN_WIDTH)
+	{
+		mario->SetPosition(Vector2D(0, mario->GetPosition().y));
+	}
 
-		if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_enemies[i]->GetCollisionBox()))
+	if (luigi->GetCenterPosition().x < 0)
+	{
+		luigi->SetPosition(Vector2D(SCREEN_WIDTH - luigi->GetWidth(), luigi->GetPosition().y));
+	}
+	else if (luigi->GetCenterPosition().x > SCREEN_WIDTH)
+	{
+		luigi->SetPosition(Vector2D(0, luigi->GetPosition().y));
+	}
+	if (!m_enemies.empty())
+	{
+		for (int i = 0; i < m_enemies.size(); i++)
 		{
-			if (m_enemies[i]->GetInjured())
+			if (m_enemies[i]->GetCenterPosition().x < 0)
 			{
-				//kill the enemy
-				m_enemies[i]->KoopaDie();
-				m_enemies.erase(m_enemies.begin() + i);
+				m_enemies[i]->SetPosition(Vector2D(SCREEN_WIDTH - m_enemies[i]->GetWidth(), m_enemies[i]->GetPosition().y));
 			}
-			else
+			else if (m_enemies[i]->GetCenterPosition().x > SCREEN_WIDTH)
 			{
-				//kill the player because the enemy was not injured
-				luigi->LuigiDie();
+				m_enemies[i]->SetPosition(Vector2D(0, m_enemies[i]->GetPosition().y));
 			}
 		}
 	}
@@ -194,6 +194,30 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 				//don't do this if mario is already dying
 				if (Collisions::Instance()->Circle(m_enemies[i]->GetPosition(), mario->GetPosition(), m_enemies[i]->GetCollisionRadius(), mario->GetCollisionRadius()) &&
 					mario->GetAlive())
+				{
+					//this collision check is somehow failing, debug it.
+
+
+					if (m_enemies[i]->GetInjured())
+					{
+						
+						m_enemies[i]->SetAlive(false);
+					}
+					else
+					{
+						//kill mario
+					}
+
+					//if the enemy is no longer alive, then schedule it for deletion
+					if (!m_enemies[i]->GetAlive())
+					{
+						enemyIndexToDelete = i;
+					}
+				}
+
+				//don't do this if mario is already dying
+				if (Collisions::Instance()->Circle(m_enemies[i]->GetPosition(), luigi->GetPosition(), m_enemies[i]->GetCollisionRadius(), luigi->GetCollisionRadius()) &&
+					luigi->GetAlive())
 				{
 					if (m_enemies[i]->GetInjured())
 					{

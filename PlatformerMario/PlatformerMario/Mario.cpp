@@ -13,17 +13,15 @@ Mario::Mario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 		cout << "Failed to load character texture!" << endl;
 	}
 
+	m_width = m_texture->GetWidth();
+	m_height = m_texture->GetHeight();
+
 	m_target_velocity = PLAYER_SPEED;
 }
 
 Mario::~Mario()
 {
 	m_renderer = nullptr;
-}
-
-void Mario::MarioDie()
-{
-
 }
 
 void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
