@@ -76,6 +76,40 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
+	//kill any koopas that are currently injured.
+	for (int i = 0; i < m_enemies.size(); i++)
+	{
+		if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_enemies[i]->GetCollisionBox()))
+		{
+			if (m_enemies[i]->GetInjured())
+			{
+				//kill the enemy
+				m_enemies[i]->KoopaDie();
+				m_enemies.erase(m_enemies.begin() + i);
+			}
+			else
+			{
+				//kill the player because the enemy was not injured
+				mario->MarioDie();
+			}
+		}
+
+		if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_enemies[i]->GetCollisionBox()))
+		{
+			if (m_enemies[i]->GetInjured())
+			{
+				//kill the enemy
+				m_enemies[i]->KoopaDie();
+				m_enemies.erase(m_enemies.begin() + i);
+			}
+			else
+			{
+				//kill the player because the enemy was not injured
+				luigi->LuigiDie();
+			}
+		}
+	}
+
 	//do the screenshake if required.
 	if (m_screenshake)
 	{

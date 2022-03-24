@@ -58,6 +58,11 @@ void Koopa::KoopaJump(float deltaTime)
 	}
 }
 
+void Koopa::KoopaDie()
+{
+	//summon death particles
+}
+
 void Koopa::Render()
 {
 	//left position of the sprite we want.

@@ -21,6 +21,11 @@ Mario::~Mario()
 	m_renderer = nullptr;
 }
 
+void Mario::MarioDie()
+{
+
+}
+
 void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
 	//the only difference in mario's update is his control scheme.

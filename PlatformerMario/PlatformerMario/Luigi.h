@@ -10,5 +10,6 @@ public:
 
 	void Update(float deltaTime, SDL_Event e, LevelMap* map) override;
 	
+	void LuigiDie();
 };
 

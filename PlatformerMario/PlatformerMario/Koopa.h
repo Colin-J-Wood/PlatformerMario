@@ -18,6 +18,7 @@ public:
 
     void TakeDamage(float deltaTime);
     void KoopaJump(float deltaTime);
+    void KoopaDie();
     bool GetInjured() { return m_injured; };
 
     void Render() override;

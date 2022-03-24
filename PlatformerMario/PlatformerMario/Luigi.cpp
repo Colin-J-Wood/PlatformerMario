@@ -26,6 +26,11 @@ Luigi::~Luigi()
 	m_renderer = nullptr;
 }
 
+void Luigi::LuigiDie()
+{
+
+}
+
 void Luigi::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
 	Character::Update(deltaTime, e, map);
