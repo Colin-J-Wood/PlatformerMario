@@ -2,6 +2,7 @@
 #include "Texture2D.h"
 #include "Character.h"
 #include "Collisions.h"
+#include <random>
 
 using namespace std;
 
@@ -58,6 +59,21 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
 	mario->Update(deltaTime, e, m_levelmap);
 	luigi->Update(deltaTime, e, m_levelmap);
+
+	//add a new enemy if the list has less.
+	while (m_enemies.size() < 2)
+	{
+		//spawn at randomly left or right top pipe
+		int rand_result = rand() % 2;
+		if (rand_result == 1)
+		{
+			CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
+		}
+		else
+		{
+			CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
+		}
+	}
 
 	UpdateEnemies(deltaTime, e, m_levelmap);
 
@@ -156,8 +172,8 @@ bool GameScreenLevel1::SetUpLevel()
 	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
 	m_powBlock = new POWBlock(m_renderer, m_levelmap);
 
-	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
-	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
 
 	return true;
 }
