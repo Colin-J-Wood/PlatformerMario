@@ -8,6 +8,17 @@ using namespace std;
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
 	SetUpLevel();
+
+	m_music = Mix_LoadMUS("Music/MarioUnderworld.mp3");
+	if (m_music == nullptr)
+	{
+		cout << "Failed to load music.  Error: " << Mix_GetError() << endl;
+	}
+
+	if (Mix_PlayingMusic() == 0)
+	{
+		Mix_PlayMusic(m_music, -1);
+	}
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -200,7 +211,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 
 					if (m_enemies[i]->GetInjured())
 					{
-						
+						m_enemies[i]->m_kill_sound->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else
@@ -215,6 +226,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 				{
 					if (m_enemies[i]->GetInjured())
 					{
+						m_enemies[i]->m_kill_sound->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else

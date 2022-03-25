@@ -3,6 +3,7 @@
 #include "Commons.h"
 #include "LevelMap.h"
 #include "Texture2D.h"
+#include "Sound.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
@@ -27,6 +28,7 @@ private:
 	Vector2D m_position;
 	Texture2D* m_texture;
 	LevelMap* m_level_map;
+	Sound* m_hit_sound;
 
 	float m_single_sprite_w;
 	float m_single_sprite_h;

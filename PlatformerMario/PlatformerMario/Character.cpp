@@ -132,6 +132,9 @@ void Character::Jump(float deltaTime)
 	m_velocity.y = -m_target_velocity.y * deltaTime;
 	m_jumping = true;
 	m_canJump = false;
+
+	//play jump sound
+	m_jump_sound->PlaySound(0);
 }
 
 //add a fixed gravity speed to this character

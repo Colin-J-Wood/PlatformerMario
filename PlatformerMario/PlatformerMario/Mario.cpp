@@ -17,6 +17,8 @@ Mario::Mario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 	m_height = m_texture->GetHeight();
 
 	m_target_velocity = PLAYER_SPEED;
+
+	m_jump_sound = new Sound("Sound/player_jump.mp3");
 }
 
 Mario::~Mario()

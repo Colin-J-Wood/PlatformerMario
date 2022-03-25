@@ -15,7 +15,6 @@ using namespace std;
 SDL_Window* g_window = nullptr;
 SDL_Renderer* g_renderer = nullptr;
 GameScreenManager* game_screen_manager;
-Mix_Music* g_music = nullptr;
 
 Uint32 g_old_time;
 
@@ -37,12 +36,6 @@ int main(int argc, char* args[])
 		
 		bool quit = false;
 
-		LoadMusic("Music/Mario.mp3");
-		if (Mix_PlayingMusic() == 0)
-		{
-			Mix_PlayMusic(g_music, -1);
-		}
-
 		while (!quit)
 		{
 			Render();
@@ -53,16 +46,6 @@ int main(int argc, char* args[])
 	CloseSDL();
 
 	return 0;
-}
-
-void LoadMusic(string file)
-{
-	//load some music
-	g_music = Mix_LoadMUS(file.c_str());
-	if (g_music == nullptr)
-	{
-		cout << "Failed to load music.  Error: " << Mix_GetError() << endl;
-	}
 }
 
 bool InitSDL()

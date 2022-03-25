@@ -4,7 +4,7 @@ using namespace std;
 
 POWBlock::POWBlock()
 {
-	
+
 }
 
 //this constructor summons a default pow block and is used for testing/level 1.
@@ -28,6 +28,8 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map)
 
 	//tell the tile map this block exists here now
 	m_level_map->SetTileAt(m_position.x / DEFAULT_TILESIZE, m_position.y / DEFAULT_TILESIZE, OBJECT);
+
+	m_hit_sound = new Sound("Sound/pow.mp3");
 }
 
 //this version initializes a pow block with a set number of hits, which requires the file to have that many slices.
@@ -51,6 +53,8 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, string filename, int n
 
 	//tell the tile map this block exists here now
 	m_level_map->SetTileAt(m_position.x / DEFAULT_TILESIZE, m_position.y / DEFAULT_TILESIZE, OBJECT);
+
+	m_hit_sound = new Sound("Sound/pow.mp3");
 }
 
 //this constructor allows setting a position manually.
@@ -68,6 +72,8 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, Vector2D position, str
 	m_single_sprite_h = m_texture->GetHeight();
 	m_num_hits_left = num_hits;
 	m_position = position;
+
+	m_hit_sound = new Sound("Sound/pow.mp3");
 }
 
 POWBlock::~POWBlock()
@@ -102,6 +108,7 @@ void POWBlock::Render()
 
 void POWBlock::TakeHit()
 {
+	m_hit_sound->PlaySound(0);
 	m_num_hits_left--;
 	
 	if (m_num_hits_left <= 0)

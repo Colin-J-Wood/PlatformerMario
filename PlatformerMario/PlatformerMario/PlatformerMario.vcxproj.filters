@@ -69,6 +69,9 @@
     <ClCompile Include="Koopa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h">
@@ -110,6 +113,9 @@
     <ClInclude Include="Koopa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\test.bmp">
@@ -148,6 +154,12 @@
     </Media>
     <Media Include="Music\MarioUnderworld.mp3">
       <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\player_jump.mp3">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="Sound\contact_kill.wav">
+      <Filter>Resource Files\sounds</Filter>
     </Media>
   </ItemGroup>
 </Project>

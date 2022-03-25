@@ -20,6 +20,8 @@ Koopa::Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D s
 
 	m_width = m_single_sprite_w;
 	m_height = m_single_sprite_h;
+
+	m_kill_sound = new Sound("Sound/contact_kill.mp3");
 }
 
 Koopa::~Koopa()

@@ -29,9 +29,6 @@ void LevelMap::LoadLevel(const char* filename)
 		return;
 	}
 
-	//debug information for tilemappings.
-	cout << "tilemap loaded:" << endl;
-
 	//read all the lines, filling the map.
 	while (!file.eof())
 	{
@@ -53,7 +50,6 @@ vector<TILETYPE> LevelMap::ReadLine()
 	getline(file, lineOfText);
 
 	//read for integers between commas
-	cout << lineOfText << endl;
 	stringstream ss(lineOfText);
 	while (ss.good())
 	{

@@ -7,6 +7,7 @@
 #include "Texture2D.h"
 #include "Constants.h"
 #include "LevelMap.h"
+#include "Sound.h"
 
 using namespace std;
 
@@ -18,12 +19,15 @@ protected:
 	virtual void MoveRight(float deltaTime);
 	virtual void Jump(float deltaTime);
 
-	//variables
+	//components
 	SDL_Renderer* m_renderer;
 	Vector2D m_position;
 	Vector2D m_velocity;
 	float m_collision_radius;
 	Texture2D* m_texture;
+	Sound* m_jump_sound;
+
+	//variables
 	FACING m_facing_direction; //moved to here for inheritance.
 	//these two exist to remove issues where a texture might be wider than the character, for sprite sheet use.
 	int m_width;
@@ -38,7 +42,6 @@ protected:
 	bool m_canJump;
 	bool m_ctrlJump;
 	TILETYPE m_blockResult[4];
-
 	bool m_alive = true;
 
 public:
