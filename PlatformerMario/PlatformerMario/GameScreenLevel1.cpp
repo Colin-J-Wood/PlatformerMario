@@ -71,11 +71,11 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 			int rand_result = rand() % 2;
 			if (rand_result == 1)
 			{
-				CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
+				CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
 			}
 			else
 			{
-				CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
+				CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
 			}
 
 			//then reset the timer for the next enemy.
@@ -180,8 +180,8 @@ bool GameScreenLevel1::SetUpLevel()
 	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
 	m_powBlock = new POWBlock(m_renderer, m_levelmap);
 
-	CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
-	CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
 
 	return true;
 }
@@ -221,8 +221,8 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 			//check to see if enemy collides with player
 			if ((m_enemies[i]->GetPosition().y > 300.0f || 
 				m_enemies[i]->GetPosition().y <= 64.0f) && 
-				(m_enemies[i]->GetPosition().x < 64.0f || 
-				m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+				(m_enemies[i]->GetPosition().x < 32.0f || 
+				m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 64.0f))
 			{
 				//ignore collisions if behind a pipe
 			}
