@@ -1,18 +1,9 @@
-﻿  Koopa.cpp
+﻿  GameScreenLevel1.cpp
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(18,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(19,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(21,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(22,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(70,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(73,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(76,42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(76,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(76,61): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(76,61): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(79,66): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(79,66): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(79,85): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Koopa.cpp(79,85): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(22,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(94,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(103,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(111,21): warning C4018: '<': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(115,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

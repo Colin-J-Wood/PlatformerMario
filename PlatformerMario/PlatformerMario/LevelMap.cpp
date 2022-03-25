@@ -29,9 +29,6 @@ void LevelMap::LoadLevel(const char* filename)
 		return;
 	}
 
-	//debug information for tilemappings.
-	cout << "tilemap loaded:" << endl;
-
 	//read all the lines, filling the map.
 	while (!file.eof())
 	{
