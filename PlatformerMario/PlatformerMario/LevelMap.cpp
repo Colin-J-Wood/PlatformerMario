@@ -53,7 +53,6 @@ vector<TILETYPE> LevelMap::ReadLine()
 	getline(file, lineOfText);
 
 	//read for integers between commas
-	cout << lineOfText << endl;
 	stringstream ss(lineOfText);
 	while (ss.good())
 	{

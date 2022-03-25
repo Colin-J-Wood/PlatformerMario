@@ -12,9 +12,12 @@ private:
 
     void FlipRightwayUp(float deltaTime);
     
+    
 public:
     Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D start_position, FACING start_facing, Vector2D movement_speed);
     ~Koopa();
+
+    Sound* m_kill_sound;
 
     void TakeDamage(float deltaTime);
     void KoopaJump(float deltaTime);

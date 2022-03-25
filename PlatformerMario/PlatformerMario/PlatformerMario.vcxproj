@@ -193,6 +193,7 @@
   <ItemGroup>
     <Media Include="Music\Mario.mp3" />
     <Media Include="Music\MarioUnderworld.mp3" />
+    <Media Include="Sound\contact_kill.wav" />
     <Media Include="Sound\player_jump.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

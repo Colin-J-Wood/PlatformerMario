@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <vector>
 #include <algorithm>
 #include "Koopa.h"
@@ -29,6 +30,7 @@ private:
 
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
+    Mix_Music* m_music = nullptr;
 
     POWBlock* m_powBlock;
 
