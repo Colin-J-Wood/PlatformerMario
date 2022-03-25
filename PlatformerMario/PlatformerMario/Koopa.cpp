@@ -30,7 +30,7 @@ Koopa::~Koopa()
 void Koopa::FlipRightwayUp(float deltaTime)
 {
 	//swap directions
-	if (m_facing_direction = FACING_RIGHT)
+	if (m_facing_direction == FACING_RIGHT)
 	{
 		m_facing_direction = FACING_LEFT;
 	}
