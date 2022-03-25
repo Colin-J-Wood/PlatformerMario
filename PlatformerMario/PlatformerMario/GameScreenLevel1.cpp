@@ -19,6 +19,8 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 	{
 		Mix_PlayMusic(m_music, -1);
 	}
+
+	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -211,7 +213,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 
 					if (m_enemies[i]->GetInjured())
 					{
-						m_enemies[i]->m_kill_sound->PlaySound(0);
+						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else
@@ -226,7 +228,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 				{
 					if (m_enemies[i]->GetInjured())
 					{
-						m_enemies[i]->m_kill_sound->PlaySound(0);
+						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else

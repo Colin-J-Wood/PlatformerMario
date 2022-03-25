@@ -23,6 +23,7 @@ public:
     void Update(float deltaTime, SDL_Event e) override;
 private:
     vector<Koopa*> m_enemies;
+    Sound* m_kill_koopa;
 
     Mario* mario;
     Luigi* luigi;
@@ -31,7 +32,6 @@ private:
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
     Mix_Music* m_music = nullptr;
-
     POWBlock* m_powBlock;
 
     bool m_screenshake;
