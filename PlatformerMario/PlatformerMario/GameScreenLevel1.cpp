@@ -61,17 +61,25 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	luigi->Update(deltaTime, e, m_levelmap);
 
 	//add a new enemy if the list has less.
-	while (m_enemies.size() < 2)
+	if (m_enemies.size() < 2)
 	{
-		//spawn at randomly left or right top pipe
-		int rand_result = rand() % 2;
-		if (rand_result == 1)
+		//respawn on a timer
+		m_respawn_time += deltaTime;
+		if (m_respawn_time > KOOPA_RESPAWN_TIME)
 		{
-			CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
-		}
-		else
-		{
-			CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
+			//spawn at randomly left or right top pipe
+			int rand_result = rand() % 2;
+			if (rand_result == 1)
+			{
+				CreateKoopa(Vector2D(75, 32), FACING_RIGHT, KOOPA_SPEED);
+			}
+			else
+			{
+				CreateKoopa(Vector2D(400, 32), FACING_LEFT, KOOPA_SPEED);
+			}
+
+			//then reset the timer for the next enemy.
+			m_respawn_time = 0.0f;
 		}
 	}
 

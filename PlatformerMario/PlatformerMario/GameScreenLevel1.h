@@ -24,7 +24,6 @@ public:
 private:
     vector<Koopa*> m_enemies;
     Sound* m_kill_koopa;
-
     Mario* mario;
     Luigi* luigi;
     bool SetUpLevel();
@@ -38,6 +37,7 @@ private:
     float m_shake_time;
     float m_wobble;
     float m_background_yPos;
+    float m_respawn_time;
 
     void DoScreenshake(float deltaTime);
 
