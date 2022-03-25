@@ -157,6 +157,7 @@
     <ClCompile Include="Luigi.cpp" />
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="POWBlock.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
@@ -173,6 +174,7 @@
     <ClInclude Include="Luigi.h" />
     <ClInclude Include="Mario.h" />
     <ClInclude Include="POWBlock.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +193,7 @@
   <ItemGroup>
     <Media Include="Music\Mario.mp3" />
     <Media Include="Music\MarioUnderworld.mp3" />
+    <Media Include="Sound\player_jump.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
