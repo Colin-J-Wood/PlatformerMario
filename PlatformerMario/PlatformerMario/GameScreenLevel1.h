@@ -23,7 +23,7 @@ public:
     void Update(float deltaTime, SDL_Event e) override;
 private:
     vector<Koopa*> m_enemies;
-
+    Sound* m_kill_koopa;
     Mario* mario;
     Luigi* luigi;
     bool SetUpLevel();
@@ -31,13 +31,13 @@ private:
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
     Mix_Music* m_music = nullptr;
-
     POWBlock* m_powBlock;
 
     bool m_screenshake;
     float m_shake_time;
     float m_wobble;
     float m_background_yPos;
+    float m_respawn_time;
 
     void DoScreenshake(float deltaTime);
 

@@ -17,3 +17,4 @@
 
 #define KOOPA_INJURED_TIME 10.0f
 #define KOOPA_SPEED Vector2D(35.0f, 75.0f)
+#define KOOPA_RESPAWN_TIME 2.0f

@@ -2,6 +2,7 @@
 #include "Texture2D.h"
 #include "Character.h"
 #include "Collisions.h"
+#include <random>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 	{
 		Mix_PlayMusic(m_music, -1);
 	}
+
+	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -56,6 +59,29 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
 	mario->Update(deltaTime, e, m_levelmap);
 	luigi->Update(deltaTime, e, m_levelmap);
+
+	//add a new enemy if the list has less.
+	if (m_enemies.size() < 2)
+	{
+		//respawn on a timer
+		m_respawn_time += deltaTime;
+		if (m_respawn_time > KOOPA_RESPAWN_TIME)
+		{
+			//spawn at randomly left or right top pipe
+			int rand_result = rand() % 2;
+			if (rand_result == 1)
+			{
+				CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
+			}
+			else
+			{
+				CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
+			}
+
+			//then reset the timer for the next enemy.
+			m_respawn_time = 0.0f;
+		}
+	}
 
 	UpdateEnemies(deltaTime, e, m_levelmap);
 
@@ -154,8 +180,8 @@ bool GameScreenLevel1::SetUpLevel()
 	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
 	m_powBlock = new POWBlock(m_renderer, m_levelmap);
 
-	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
-	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
 
 	return true;
 }
@@ -195,8 +221,8 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 			//check to see if enemy collides with player
 			if ((m_enemies[i]->GetPosition().y > 300.0f || 
 				m_enemies[i]->GetPosition().y <= 64.0f) && 
-				(m_enemies[i]->GetPosition().x < 64.0f || 
-				m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+				(m_enemies[i]->GetPosition().x < 32.0f || 
+				m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 64.0f))
 			{
 				//ignore collisions if behind a pipe
 			}
@@ -211,7 +237,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 
 					if (m_enemies[i]->GetInjured())
 					{
-						m_enemies[i]->m_kill_sound->PlaySound(0);
+						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else
@@ -226,7 +252,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 				{
 					if (m_enemies[i]->GetInjured())
 					{
-						m_enemies[i]->m_kill_sound->PlaySound(0);
+						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 					}
 					else
