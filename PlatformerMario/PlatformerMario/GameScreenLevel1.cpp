@@ -26,6 +26,7 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 	m_text_luigi_score = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
 	m_text_mario_lives = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
 	m_text_luigi_lives = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
+	m_text_game_over = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -35,6 +36,8 @@ GameScreenLevel1::~GameScreenLevel1()
 	delete(luigi);
 	delete(m_levelmap);
 	delete(m_powBlock);
+
+	Mix_HaltMusic();
 
 	m_enemies.clear();
 
@@ -62,9 +65,10 @@ void GameScreenLevel1::Render()
 	m_text_luigi_score->Render(Vector2D(260, 10));
 	m_text_mario_lives->Render(Vector2D(70, 20));
 	m_text_luigi_lives->Render(Vector2D(260, 20));
+	m_text_game_over->Render(Vector2D(230, 230));
 }
 
-void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
+SCREENS GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
 	mario->Update(deltaTime, e, m_levelmap);
 	luigi->Update(deltaTime, e, m_levelmap);
@@ -188,10 +192,29 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
+	//draw all strings
 	m_text_mario_score->LoadString("MARIO SCORE: " + to_string(m_score_mario), { 255, 255, 255, 255 });
 	m_text_luigi_score->LoadString("LUIGI SCORE: " + to_string(m_score_luigi), { 255, 255, 255, 255 });
 	m_text_mario_lives->LoadString("MARIO LIVES: " + to_string(mario->GetLivesRemaining()), { 255, 0, 0, 255 });
 	m_text_luigi_lives->LoadString("LUIGI LIVES: " + to_string(luigi->GetLivesRemaining()), { 0, 255, 0, 255 });
+
+	//if the game over has elapsed longer than 8 seconds, go back to main menu.
+	if ((mario->GetLivesRemaining() == 0) && (luigi->GetLivesRemaining() == 0))
+	{
+		m_game_over_time += deltaTime;
+
+		if (m_game_over_time > 3.0f)
+		{
+			m_text_game_over->LoadString("GAME OVER", { 255, 255, 255, 255 });
+		}
+		if (m_game_over_time > 8.0f)
+		{
+			return SCREEN_MENU;
+		}
+	}
+
+	//stay in the level.
+	return SCREEN_LEVEL1;
 }
 
 bool GameScreenLevel1::SetUpLevel()

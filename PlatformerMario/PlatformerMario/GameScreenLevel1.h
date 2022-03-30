@@ -24,7 +24,7 @@ public:
     ~GameScreenLevel1();
 
     void Render() override;
-    void Update(float deltaTime, SDL_Event e) override;
+    SCREENS Update(float deltaTime, SDL_Event e) override;
 private:
     vector<Koopa*> m_enemies;
     Sound* m_kill_koopa;
@@ -41,6 +41,7 @@ private:
     TextRenderer* m_text_luigi_score; 
     TextRenderer* m_text_mario_lives;
     TextRenderer* m_text_luigi_lives;
+    TextRenderer* m_text_game_over;
 
     bool m_screenshake;
     float m_shake_time;
@@ -50,6 +51,7 @@ private:
 
     int m_score_mario;
     int m_score_luigi;
+    float m_game_over_time;
 
     void DoScreenshake(float deltaTime);
 

@@ -13,7 +13,7 @@ public:
 	~GameScreen();
 
 	virtual void Render();
-	virtual void Update(float deltaTime, SDL_Event e);
+	virtual SCREENS Update(float deltaTime, SDL_Event e);
 protected:
 	SDL_Renderer* m_renderer;
 };
