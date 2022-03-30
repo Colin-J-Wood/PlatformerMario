@@ -2,7 +2,6 @@
 #include "Texture2D.h"
 #include "Character.h"
 #include "Collisions.h"
-#include <random>
 
 using namespace std;
 
@@ -22,6 +21,10 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 	}
 
 	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
+
+	m_text = new TextRenderer(renderer);
+
+	m_text->LoadFont("Fonts/kongtext.ttf", 15, "score", { 255, 255, 255, 255 });
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -53,6 +56,8 @@ void GameScreenLevel1::Render()
 
 	//render all tiles in front of entities so pipes can hide koopas.
 	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
+
+	m_text->Render(Vector2D(0,0));
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -267,7 +272,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					//process the translated collision box.
 					Rect2D new_box = mario->GetCollisionBox();
 					//it should be an entire two tiles above the player.
-					new_box.x -= DEFAULT_TILESIZE * 2;
 					new_box.y -= DEFAULT_TILESIZE * 2;
 
 					//do the collision check with the new translated box.

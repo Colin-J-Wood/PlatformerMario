@@ -4,6 +4,9 @@
 #include <SDL_mixer.h>
 #include <vector>
 #include <algorithm>
+#include <random>
+#include <string>
+#include <iostream>
 #include "Koopa.h"
 #include "GameScreen.h"
 #include "Texture2D.h"
@@ -11,6 +14,7 @@
 #include "Mario.h"
 #include "Luigi.h"
 #include "POWBlock.h"
+#include "TextRenderer.h"
 
 class GameScreenLevel1 :
     public GameScreen
@@ -32,6 +36,8 @@ private:
     LevelMap* m_levelmap;
     Mix_Music* m_music = nullptr;
     POWBlock* m_powBlock;
+
+    TextRenderer* m_text;
 
     bool m_screenshake;
     float m_shake_time;
