@@ -10,11 +10,11 @@ using namespace std;
 class TextRenderer
 {
 public:
-	TextRenderer(SDL_Renderer* renderer);
+	TextRenderer(SDL_Renderer* renderer, string filename, int fontsize);
 	~TextRenderer();
 
 	void Render(Vector2D position);
-	bool LoadFont(const string filename, int font_size, const string message, SDL_Color color);
+	bool LoadString(const string message, SDL_Color color);
 
 private:
 	SDL_Renderer* m_renderer;

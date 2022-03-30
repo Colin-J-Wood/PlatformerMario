@@ -15,7 +15,9 @@
 
 #define GRAVITY 1.5f
 #define SHAKE_DURATION 0.5f
+#define POW_SCORE 1000
 
 #define KOOPA_INJURED_TIME 10.0f
 #define KOOPA_SPEED Vector2D(75.0f, 75.0f)
 #define KOOPA_RESPAWN_TIME 4.0f
+#define KOOPA_SCORE 800

@@ -45,6 +45,8 @@ private:
     float m_background_yPos;
     float m_respawn_time;
 
+    int m_score;
+
     void DoScreenshake(float deltaTime);
 
     void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);

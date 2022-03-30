@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include <iostream>
 
 //header includes
@@ -30,6 +31,7 @@ int main(int argc, char* args[])
 {
 	if (InitSDL())
 	{
+		TTF_Init();
 		game_screen_manager = new GameScreenManager(g_renderer, SCREEN_LEVEL1);
 
 		g_old_time = SDL_GetTicks();
@@ -41,6 +43,8 @@ int main(int argc, char* args[])
 			Render();
 			quit = Update();
 		}
+
+		TTF_Quit();
 	}
 
 	CloseSDL();

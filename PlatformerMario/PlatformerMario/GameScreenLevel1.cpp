@@ -22,9 +22,7 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 
 	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
 
-	m_text = new TextRenderer(renderer);
-
-	m_text->LoadFont("Fonts/kongtext.ttf", 15, "score", { 255, 255, 255, 255 });
+	m_text = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -57,7 +55,7 @@ void GameScreenLevel1::Render()
 	//render all tiles in front of entities so pipes can hide koopas.
 	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
 
-	m_text->Render(Vector2D(0,0));
+	m_text->Render(Vector2D(0,100));
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -111,6 +109,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		if ((luigi->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
+			m_score += POW_SCORE;
 			DoScreenshake(deltaTime);
 
 			//set mario's velocity so he falls from the block, then correct his positioning.
@@ -167,6 +166,8 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 			m_background_yPos = 0.0f;
 		}
 	}
+
+	m_text->LoadString("SCORE: " + to_string(m_score), { 255, 255, 255, 255 });
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -237,13 +238,12 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 				if (Collisions::Instance()->Circle(m_enemies[i]->GetPosition(), mario->GetPosition(), m_enemies[i]->GetCollisionRadius(), mario->GetCollisionRadius()) &&
 					mario->GetAlive())
 				{
-					//this collision check is somehow failing, debug it.
-
-
 					if (m_enemies[i]->GetInjured())
 					{
 						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
+
+						m_score += KOOPA_SCORE;
 					}
 					else
 					{
@@ -259,6 +259,8 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					{
 						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
+
+						m_score += KOOPA_SCORE;
 					}
 					else
 					{
@@ -279,6 +281,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					{
 						//damage if not already flipped over.
 						m_enemies[i]->TakeDamage(deltaTime);
+						m_score += KOOPA_SCORE;
 					}
 				}
 
@@ -294,6 +297,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
 					{
 						m_enemies[i]->TakeDamage(deltaTime);
+						m_score += KOOPA_SCORE;
 					}
 				}
 			}
