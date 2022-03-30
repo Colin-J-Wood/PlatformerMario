@@ -1,9 +1,12 @@
-﻿  GameScreenLevel1.cpp
+﻿  Luigi.cpp
 C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(22,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(120,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(129,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(137,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel1.cpp(141,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Luigi.cpp(100,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Luigi.cpp(110,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Mario.cpp
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Mario.cpp(93,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\PlatformerMario\Mario.cpp(101,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   PlatformerMario.vcxproj -> C:\Users\w012764k\Downloads\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

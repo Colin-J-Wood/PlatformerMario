@@ -242,7 +242,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					}
 					else
 					{
-						//kill mario
+						mario->SetAlive(false);
 					}
 				}
 
@@ -257,7 +257,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					}
 					else
 					{
-						//kill mario
+						luigi->SetAlive(false);
 					}
 				}
 
@@ -276,11 +276,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 						//damage if not already flipped over.
 						m_enemies[i]->TakeDamage(deltaTime);
 					}
-					else if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && m_enemies[i]->GetInjured())
-					{
-						//damage if not already flipped over.
-						m_enemies[i]->FlipRightwayUp(deltaTime);
-					}
 				}
 
 				//allow the players to hit the ceiling and trace a box trace above the ceiling.
@@ -295,11 +290,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
 					{
 						m_enemies[i]->TakeDamage(deltaTime);
-					}
-					else if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && m_enemies[i]->GetInjured())
-					{
-						//damage if not already flipped over.
-						m_enemies[i]->FlipRightwayUp(deltaTime);
 					}
 				}
 			}

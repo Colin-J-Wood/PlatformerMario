@@ -13,5 +13,6 @@ public:
 
 private:
 	bool hit_ceiling = false;
+	float m_death_elapsed = 0.0f;
 };
 
