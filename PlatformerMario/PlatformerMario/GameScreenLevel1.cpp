@@ -76,15 +76,29 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		m_respawn_time += deltaTime;
 		if (m_respawn_time > KOOPA_RESPAWN_TIME)
 		{
-			//spawn at randomly left or right top pipe
-			int rand_result = rand() % 2;
-			if (rand_result == 1)
+			//spawn furthest away from player instead of random
+			int side = 0;
+			if (mario->GetCenterPosition().x > SCREEN_WIDTH / 2) side += 1;
+			if (luigi->GetCenterPosition().x > SCREEN_WIDTH / 2) side += 1;
+			if (side == 2)
 			{
 				CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
 			}
-			else
+			else if (side == 0)
 			{
 				CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
+			}
+			else
+			{
+				//do random because both players are on opposite sides
+				if ((rand() % 2 + 1) == 1)
+				{
+					CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
+				}
+				else
+				{
+					CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
+				}
 			}
 
 			//then reset the timer for the next enemy.
