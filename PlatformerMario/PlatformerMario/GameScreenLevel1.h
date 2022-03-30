@@ -37,7 +37,10 @@ private:
     Mix_Music* m_music = nullptr;
     POWBlock* m_powBlock;
 
-    TextRenderer* m_text;
+    TextRenderer* m_text_mario_score;
+    TextRenderer* m_text_luigi_score; 
+    TextRenderer* m_text_mario_lives;
+    TextRenderer* m_text_luigi_lives;
 
     bool m_screenshake;
     float m_shake_time;
@@ -45,7 +48,8 @@ private:
     float m_background_yPos;
     float m_respawn_time;
 
-    int m_score;
+    int m_score_mario;
+    int m_score_luigi;
 
     void DoScreenshake(float deltaTime);
 

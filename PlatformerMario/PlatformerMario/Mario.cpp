@@ -1,5 +1,10 @@
 #include "Mario.h"
 
+Mario::Mario()
+{
+
+}
+
 Mario::Mario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 {
 	m_renderer = renderer;
@@ -32,7 +37,7 @@ void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
 	//don't do this if the player is dead.
 	if (m_alive) Character::Update(deltaTime, e, map);
 
-	if (!m_alive) m_death_elapsed += deltaTime;
+	if (!m_alive && (m_lives > 0)) m_death_elapsed += deltaTime;
 	if (m_death_elapsed > PLAYER_DEATH_TIME) m_death_elapsed = PLAYER_DEATH_TIME;
 	
 	switch (e.type)

@@ -37,8 +37,8 @@ void Luigi::Update(float deltaTime, SDL_Event e, LevelMap* map)
 	//the only difference in mario's update is his control scheme.
 	//don't do this if the player is dead.
 	if (m_alive) Character::Update(deltaTime, e, map);
-
-	if (!m_alive) m_death_elapsed += deltaTime;
+	//don't respawn if the player is game overed
+	if (!m_alive && (m_lives > 0)) m_death_elapsed += deltaTime;
 	if (m_death_elapsed > PLAYER_DEATH_TIME) m_death_elapsed = PLAYER_DEATH_TIME;
 
 	switch (e.type)

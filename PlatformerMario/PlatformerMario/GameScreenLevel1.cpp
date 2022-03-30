@@ -22,7 +22,10 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 
 	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
 
-	m_text = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
+	m_text_mario_score = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
+	m_text_luigi_score = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
+	m_text_mario_lives = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
+	m_text_luigi_lives = new TextRenderer(renderer, "Fonts/kongtext.ttf", 8);
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -55,7 +58,10 @@ void GameScreenLevel1::Render()
 	//render all tiles in front of entities so pipes can hide koopas.
 	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
 
-	m_text->Render(Vector2D(0,100));
+	m_text_mario_score->Render(Vector2D(70, 10));
+	m_text_luigi_score->Render(Vector2D(260, 10));
+	m_text_mario_lives->Render(Vector2D(70, 20));
+	m_text_luigi_lives->Render(Vector2D(260, 20));
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -64,7 +70,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	luigi->Update(deltaTime, e, m_levelmap);
 
 	//add a new enemy if the list has less.
-	if (m_enemies.size() < 2)
+	if (m_enemies.size() < 4)
 	{
 		//respawn on a timer
 		m_respawn_time += deltaTime;
@@ -95,6 +101,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		if ((mario->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
+			m_score_mario += POW_SCORE;
 			DoScreenshake(deltaTime);
 
 			//set mario's velocity so he falls from the block, then correct his positioning.
@@ -109,7 +116,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		if ((luigi->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
 		{
 			m_powBlock->TakeHit();
-			m_score += POW_SCORE;
+			m_score_luigi += POW_SCORE;
 			DoScreenshake(deltaTime);
 
 			//set mario's velocity so he falls from the block, then correct his positioning.
@@ -167,7 +174,10 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
-	m_text->LoadString("SCORE: " + to_string(m_score), { 255, 255, 255, 255 });
+	m_text_mario_score->LoadString("MARIO SCORE: " + to_string(m_score_mario), { 255, 255, 255, 255 });
+	m_text_luigi_score->LoadString("LUIGI SCORE: " + to_string(m_score_luigi), { 255, 255, 255, 255 });
+	m_text_mario_lives->LoadString("MARIO LIVES: " + to_string(mario->GetLivesRemaining()), { 255, 0, 0, 255 });
+	m_text_luigi_lives->LoadString("LUIGI LIVES: " + to_string(luigi->GetLivesRemaining()), { 0, 255, 0, 255 });
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -185,9 +195,6 @@ bool GameScreenLevel1::SetUpLevel()
 
 	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
 	m_powBlock = new POWBlock(m_renderer, m_levelmap);
-
-	CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
-	CreateKoopa(Vector2D(460, 32), FACING_LEFT, KOOPA_SPEED);
 
 	return true;
 }
@@ -243,10 +250,11 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 
-						m_score += KOOPA_SCORE;
+						m_score_mario += KOOPA_SCORE;
 					}
 					else
 					{
+						mario->LoseLife();
 						mario->SetAlive(false);
 					}
 				}
@@ -260,10 +268,11 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 						m_kill_koopa->PlaySound(0);
 						m_enemies[i]->SetAlive(false);
 
-						m_score += KOOPA_SCORE;
+						m_score_luigi += KOOPA_SCORE;
 					}
 					else
 					{
+						luigi->LoseLife();
 						luigi->SetAlive(false);
 					}
 				}
@@ -281,7 +290,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					{
 						//damage if not already flipped over.
 						m_enemies[i]->TakeDamage(deltaTime);
-						m_score += KOOPA_SCORE;
+						m_score_mario += KOOPA_SCORE;
 					}
 				}
 
@@ -297,7 +306,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 					if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
 					{
 						m_enemies[i]->TakeDamage(deltaTime);
-						m_score += KOOPA_SCORE;
+						m_score_luigi += KOOPA_SCORE;
 					}
 				}
 			}
