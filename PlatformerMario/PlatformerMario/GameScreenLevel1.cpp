@@ -260,6 +260,48 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 						//kill mario
 					}
 				}
+
+				//allow the players to hit the ceiling and trace a box trace above the ceiling.
+				if (mario->GetAlive() && mario->GetCeilingHit())
+				{
+					//process the translated collision box.
+					Rect2D new_box = mario->GetCollisionBox();
+					//it should be an entire two tiles above the player.
+					new_box.x -= DEFAULT_TILESIZE * 2;
+					new_box.y -= DEFAULT_TILESIZE * 2;
+
+					//do the collision check with the new translated box.
+					if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
+					{
+						//damage if not already flipped over.
+						m_enemies[i]->TakeDamage(deltaTime);
+					}
+					else if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && m_enemies[i]->GetInjured())
+					{
+						//damage if not already flipped over.
+						m_enemies[i]->FlipRightwayUp(deltaTime);
+					}
+				}
+
+				//allow the players to hit the ceiling and trace a box trace above the ceiling.
+				if (luigi->GetAlive() && luigi->GetCeilingHit())
+				{
+					//process the translated collision box.
+					Rect2D new_box = luigi->GetCollisionBox();
+					//it should be an entire two tiles above the player.
+					new_box.y -= DEFAULT_TILESIZE * 2;
+
+					//do the collision check with the new translated box.
+					if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
+					{
+						m_enemies[i]->TakeDamage(deltaTime);
+					}
+					else if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && m_enemies[i]->GetInjured())
+					{
+						//damage if not already flipped over.
+						m_enemies[i]->FlipRightwayUp(deltaTime);
+					}
+				}
 			}
 
 			//if the enemy is no longer alive, then schedule it for deletion

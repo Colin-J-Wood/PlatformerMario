@@ -9,5 +9,9 @@ public:
 	~Luigi();
 
 	void Update(float deltaTime, SDL_Event e, LevelMap* map) override;
+	bool GetCeilingHit() { return hit_ceiling; };
+
+private:
+	bool hit_ceiling = false;
 };
 

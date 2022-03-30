@@ -72,4 +72,7 @@ void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		}
 		break;
 	}
+
+	//detect if we hit the ceiling recently.
+	hit_ceiling = (m_blockResult[UP] != AIR);
 }
