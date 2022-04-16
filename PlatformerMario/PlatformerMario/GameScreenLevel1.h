@@ -27,6 +27,7 @@ public:
     SCREENS Update(float deltaTime, SDL_Event e) override;
 private:
     vector<Koopa*> m_enemies;
+    vector<POWBlock*> m_blocks;
     Sound* m_kill_koopa;
     Mario* mario;
     Luigi* luigi;
@@ -34,7 +35,7 @@ private:
 
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
-    Mix_Music* m_music = nullptr;
+    Mix_Music* m_music;
     POWBlock* m_powBlock;
 
     TextRenderer* m_text_mario_score;

@@ -69,6 +69,6 @@ public:
 	bool GetAlive() { return m_alive; };
 	void SetAlive(bool alive) { m_alive = alive; };
 
-	Vector2D GetCenterPosition() { return Vector2D(m_position.x + m_width, m_position.y + m_height); };
+	Vector2D GetCenterPosition() { return Vector2D(m_position.x + (m_width / 2), m_position.y + (m_height / 2)); };
 };
 

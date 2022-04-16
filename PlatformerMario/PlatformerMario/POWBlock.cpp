@@ -26,9 +26,6 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map)
 	m_num_hits_left = 3;
 	m_position = Vector2D((SCREEN_WIDTH * 0.5f) - m_single_sprite_w * 0.5f, 260);
 
-	//tell the tile map this block exists here now
-	m_level_map->SetTileAt(m_position.x / DEFAULT_TILESIZE, m_position.y / DEFAULT_TILESIZE, OBJECT);
-
 	m_hit_sound = new Sound("Sound/pow.mp3");
 }
 
@@ -50,9 +47,6 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, string filename, int n
 	m_single_sprite_h = m_texture->GetHeight();
 	m_num_hits_left = num_hits;
 	m_position = Vector2D((SCREEN_WIDTH * 0.5f) - m_single_sprite_w * 0.5f, 260);
-
-	//tell the tile map this block exists here now
-	m_level_map->SetTileAt(m_position.x / DEFAULT_TILESIZE, m_position.y / DEFAULT_TILESIZE, OBJECT);
 
 	m_hit_sound = new Sound("Sound/pow.mp3");
 }
@@ -114,6 +108,9 @@ void POWBlock::TakeHit()
 	if (m_num_hits_left <= 0)
 	{
 		m_num_hits_left = 0;
-		m_level_map->SetTileAt(m_position.x / DEFAULT_TILESIZE, m_position.y / DEFAULT_TILESIZE, AIR);
+		m_level_map->SetTileAt(GetCenterPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE, AIR);
+		m_level_map->SetTileAt(GetPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE, AIR);
+		m_level_map->SetTileAt(GetCenterPosition().x / DEFAULT_TILESIZE, GetPosition().y / DEFAULT_TILESIZE, AIR);
+		m_level_map->SetTileAt(GetPosition().x / DEFAULT_TILESIZE, GetPosition().y / DEFAULT_TILESIZE, AIR);
 	}
 }
