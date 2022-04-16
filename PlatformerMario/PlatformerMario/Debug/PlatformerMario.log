@@ -1,9 +1,8 @@
 ﻿  GameScreenLevel2.cpp
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(67,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(24,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
 C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(25,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(76,89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(125): warning C4715: 'GameScreenLevel2::SetUpLevel': not all control paths return a value
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(79,89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(87,20): warning C4018: '<': signed/unsigned mismatch
   PlatformerMario.vcxproj -> C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

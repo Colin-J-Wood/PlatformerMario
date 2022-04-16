@@ -36,8 +36,14 @@ GameScreenLevel2::~GameScreenLevel2()
 
 void GameScreenLevel2::Render()
 {
+	//render all tiles in front of entities so pipes can hide koopas.
+	// SDL_Rect source_rect = SDL_Rect{ 0, 0, m_texture->GetWidth(), m_texture->GetHeight() };
+	SDL_Rect source_rect = SDL_Rect{ 0, 0, m_background_texture->GetWidth(), m_background_texture->GetHeight() };
+	SDL_Rect destination_rect = SDL_Rect{ (int)camera.x, (int)camera.y, m_background_texture->GetWidth(), m_background_texture->GetHeight() };
+	m_background_texture->Render(source_rect, destination_rect, SDL_FLIP_NONE);
+
 	//change renderers to support camera clip.
-	mario->Render();
+	mario->Render(camera);
 
 	//render every block using foreach.
 	for (POWBlock* block : m_blocks)
@@ -51,9 +57,6 @@ void GameScreenLevel2::Render()
 		koopa->Render();
 	}
 
-	//render all tiles in front of entities so pipes can hide koopas.
-	//m_background_texture->Render();
-
 	m_text_mario_score->Render(Vector2D(70, 10));
 	m_text_game_over->Render(Vector2D(230, 230));
 }
@@ -63,9 +66,9 @@ SCREENS GameScreenLevel2::Update(float deltaTime, SDL_Event e)
 	mario->Update(deltaTime, e, m_levelmap);
 
 	//center camera to half mario's position
-	camera.x = mario->GetPosition().x - (SCREEN_WIDTH / 2);
+	camera.x = -mario->GetPosition().x + (SCREEN_WIDTH / 2);
 	//unless that's less than zero, in such case place it at zero.
-	if (camera.x < 0) camera.x = 0;
+	if (camera.x > 0) camera.x = 0;
 
 	UpdateEnemies(deltaTime, e, m_levelmap);
 
@@ -122,6 +125,8 @@ bool GameScreenLevel2::SetUpLevel()
 	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 330));
 
 	m_levelmap = new LevelMap("Maps/level2.txt", DEFAULT_TILESIZE);
+
+	return true;
 }
 
 void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map)

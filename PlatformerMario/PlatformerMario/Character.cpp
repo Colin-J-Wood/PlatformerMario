@@ -39,6 +39,20 @@ void Character::Render()
 	}
 }
 
+void Character::Render(Rect2D camera_rect)
+{
+	SDL_Rect source_rect = SDL_Rect{ 0, 0, m_texture->GetWidth(), m_texture->GetHeight() };
+	SDL_Rect destination_rect = SDL_Rect{ (int)m_position.x + (int)camera_rect.x, (int)m_position.y + (int)camera_rect.y, m_texture->GetWidth(), m_texture->GetHeight() };
+	if (m_facing_direction == FACING_RIGHT)
+	{
+		m_texture->Render(source_rect, destination_rect, SDL_FLIP_NONE);
+	}
+	else
+	{
+		m_texture->Render(source_rect, destination_rect, SDL_FLIP_NONE);
+	}
+}
+
 void Character::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
 	if (m_moving_left)

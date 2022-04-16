@@ -51,6 +51,7 @@ public:
 
 	//methods
 	virtual void Render();
+	virtual void Render(Rect2D camera_rect);
 	virtual void Update(float deltaTime, SDL_Event e, LevelMap* map);
 	//make gravity virtual just in case the object wants accelerating gravity instead
 	virtual void AddGravity(float strength, float deltaTime);
@@ -66,8 +67,8 @@ public:
 	float GetCollisionRadius() { return m_collision_radius; };
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_width, m_height); }
 	Texture2D* GetTexture() { return m_texture; };
-	bool GetAlive() { return m_alive; };
 	void SetAlive(bool alive) { m_alive = alive; };
+	bool GetAlive() { return m_alive; };
 
 	Vector2D GetCenterPosition() { return Vector2D(m_position.x + (m_width / 2), m_position.y + (m_height / 2)); };
 };
