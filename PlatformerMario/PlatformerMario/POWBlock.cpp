@@ -108,9 +108,9 @@ void POWBlock::TakeHit()
 	if (m_num_hits_left <= 0)
 	{
 		m_num_hits_left = 0;
-		m_level_map->SetTileAt(GetCenterPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE, AIR);
-		m_level_map->SetTileAt(GetPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE, AIR);
-		m_level_map->SetTileAt(GetCenterPosition().x / DEFAULT_TILESIZE, GetPosition().y / DEFAULT_TILESIZE, AIR);
-		m_level_map->SetTileAt(GetPosition().x / DEFAULT_TILESIZE, GetPosition().y / DEFAULT_TILESIZE, AIR);
+		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 1, (GetCenterPosition().y / DEFAULT_TILESIZE) - 1, AIR);
+		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE) - 1, AIR);
+		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 1, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
+		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
 	}
 }

@@ -76,15 +76,14 @@ TILETYPE LevelMap::GetTileAt(int x, int y)
 	else
 	{
 		row = map[y];
-	}
-
-	if ((x >= row.size()) || (x < 0))
-	{
-		return AIR;
-	}
-	else
-	{
-		return row[x];
+		if ((x >= row.size()) || (x < 0))
+		{
+			return AIR;
+		}
+		else
+		{
+			return row[x];
+		}
 	}
 }
 
@@ -102,15 +101,23 @@ void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 	else
 	{
 		row = map[y];
-	}
+		for (TILETYPE t : row) cout << t;
+		cout << endl;
 
-	if ((x >= row.size()) || (x < 0))
-	{
-		return;
-	}
-	else
-	{
-		row[x] = tiletype;
+		if ((x >= row.size()) || (x < 0))
+		{
+			return;
+		}
+		else
+		{
+			row[x] = tiletype;
+			map[y] = row;
+			cout << "Coordinates replaced:" << endl;
+			cout << "x: " << x << endl;
+			cout << "y: " << y << endl;
+			for (TILETYPE t : row) cout << t;
+			cout << endl;
+		}
 	}
 }
 
