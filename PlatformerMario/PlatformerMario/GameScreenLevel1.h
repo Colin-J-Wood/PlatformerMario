@@ -1,4 +1,5 @@
 #pragma once
+#include "GameScreen.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
@@ -15,6 +16,8 @@
 #include "Luigi.h"
 #include "POWBlock.h"
 #include "TextRenderer.h"
+#include "Character.h"
+#include "Collisions.h"
 
 class GameScreenLevel1 :
     public GameScreen
@@ -25,6 +28,7 @@ public:
 
     void Render() override;
     SCREENS Update(float deltaTime, SDL_Event e) override;
+
 private:
     vector<Koopa*> m_enemies;
     vector<POWBlock*> m_blocks;
@@ -36,7 +40,6 @@ private:
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
     Mix_Music* m_music;
-    POWBlock* m_powBlock;
 
     TextRenderer* m_text_mario_score;
     TextRenderer* m_text_luigi_score; 

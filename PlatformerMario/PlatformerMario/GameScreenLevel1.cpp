@@ -1,7 +1,4 @@
 #include "GameScreenLevel1.h"
-#include "Texture2D.h"
-#include "Character.h"
-#include "Collisions.h"
 
 using namespace std;
 
@@ -32,15 +29,18 @@ GameScreenLevel1::~GameScreenLevel1()
 	delete(mario);
 	delete(luigi);
 	delete(m_levelmap);
-	delete(m_powBlock);
+	delete(m_kill_koopa);
 
 	Mix_FreeMusic(m_music);
 
 	m_enemies.clear();
 	m_blocks.clear();
 
-	m_background_texture = nullptr;
-	m_powBlock = nullptr;
+	delete(m_text_game_over);
+	delete(m_text_mario_lives);
+	delete(m_text_mario_score);
+	delete(m_text_luigi_lives);
+	delete(m_text_luigi_score);
 }
 
 void GameScreenLevel1::Render()
@@ -362,7 +362,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 		}
 
 		//remove dead enemies -1 each update
-
 		if (enemyIndexToDelete != -1)
 		{
 			m_enemies.erase(m_enemies.begin() + enemyIndexToDelete);

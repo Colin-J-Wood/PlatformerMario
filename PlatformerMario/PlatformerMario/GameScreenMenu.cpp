@@ -18,7 +18,10 @@ GameScreenMenu::GameScreenMenu(SDL_Renderer* renderer) : GameScreen(renderer)
 
 GameScreenMenu::~GameScreenMenu()
 {
-
+	delete(m_logo);
+	delete(m_level_1_button);
+	delete(m_level_2_button);
+	delete(m_high_scores_button);
 }
 
 void GameScreenMenu::Render()
@@ -58,6 +61,7 @@ SCREENS GameScreenMenu::Update(float deltaTime, SDL_Event e)
 
 			case 1:
 				//screen level 2
+				return SCREEN_LEVEL2;
 				break;
 
 			case 2:

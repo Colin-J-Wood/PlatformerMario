@@ -78,6 +78,9 @@
     <ClCompile Include="GameScreenMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameScreenLevel2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h">
@@ -128,6 +131,9 @@
     <ClInclude Include="GameScreenMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameScreenLevel2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\test.bmp">
@@ -150,6 +156,9 @@
     </Image>
     <Image Include="Images\tile\PowBlock.png">
       <Filter>Resource Files\tile</Filter>
+    </Image>
+    <Image Include="Images\level\SuperMarioBrosMap1-1.png">
+      <Filter>Resource Files\level</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
