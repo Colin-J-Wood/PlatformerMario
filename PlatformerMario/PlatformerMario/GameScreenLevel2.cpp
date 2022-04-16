@@ -48,13 +48,13 @@ void GameScreenLevel2::Render()
 	//render every block using foreach.
 	for (POWBlock* block : m_blocks)
 	{
-		block->Render();
+		block->Render(camera);
 	}
 
 	//render every koopa using foreach.
 	for (Koopa* koopa : m_enemies)
 	{
-		koopa->Render();
+		koopa->Render(camera);
 	}
 
 	m_text_mario_score->Render(Vector2D(70, 10));
@@ -125,6 +125,10 @@ bool GameScreenLevel2::SetUpLevel()
 	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 330));
 
 	m_levelmap = new LevelMap("Maps/level2.txt", DEFAULT_TILESIZE);
+
+	POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", 3);
+	m_blocks.push_back(test_block);
+	test_block = nullptr;
 
 	return true;
 }

@@ -87,6 +87,31 @@ void Koopa::Render()
 	}
 }
 
+void Koopa::Render(Rect2D camera_rect)
+{
+	//left position of the sprite we want.
+	int left = 0.0f;
+
+	//if injured, move to the second image of the sprite sheet
+	if (m_injured) left = m_single_sprite_w;
+
+	//get the portion of the sprite sheet we want to draw.
+	SDL_Rect portion_of_sprite = { left, 0, m_single_sprite_w, m_single_sprite_h };
+
+	//determine where it should be drawn
+	SDL_Rect destRect = { (int)(m_position.x + camera_rect.x), (int)(m_position.y + camera_rect.y), m_single_sprite_w, m_single_sprite_h };
+
+	//then draw it facing the correct direction
+	if (m_facing_direction == FACING_RIGHT)
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
+	}
+	else
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_HORIZONTAL);
+	}
+}
+
 void Koopa::Update(float deltaTime, SDL_Event e, LevelMap* map)
 {
 	Character::Update(deltaTime, e, map);

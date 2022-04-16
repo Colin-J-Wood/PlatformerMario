@@ -100,6 +100,27 @@ void POWBlock::Render()
 	}
 }
 
+void POWBlock::Render(Rect2D camera_rect)
+{
+	if (m_num_hits_left > 0)
+	{
+		//get the portion of the sheet to draw from
+		int left = m_single_sprite_w * (m_num_hits_left - 1);
+
+		//get a portion of the sprite
+		SDL_Rect portion_of_sprite = { left, 0, m_single_sprite_w, m_single_sprite_h };
+
+		//determine where to draw it.
+		SDL_Rect dest_rect = {
+			static_cast<int>(m_position.x + camera_rect.x), static_cast<int>(m_position.y + camera_rect.y),
+			m_single_sprite_w, m_single_sprite_h
+		};
+
+		//draw the sprite
+		m_texture->Render(portion_of_sprite, dest_rect, SDL_FLIP_NONE);
+	}
+}
+
 void POWBlock::TakeHit()
 {
 	m_hit_sound->PlaySound(0);

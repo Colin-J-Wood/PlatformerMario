@@ -1,8 +1,6 @@
-﻿  GameScreenLevel2.cpp
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(24,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(25,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(79,89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(87,20): warning C4018: '<': signed/unsigned mismatch
+﻿  Texture2D.cpp
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,58): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,58): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   PlatformerMario.vcxproj -> C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

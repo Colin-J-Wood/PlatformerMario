@@ -17,6 +17,7 @@ public:
 	~POWBlock();
 
 	void Render();
+	void Render(Rect2D camera_rect);
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_single_sprite_w, m_single_sprite_h);  };
 	Vector2D GetPosition() { return m_position; };
 	Vector2D GetCenterPosition() { return Vector2D((m_position.x + (GetWidth() / 2)), (m_position.y + (GetHeight() / 2))); };

@@ -22,6 +22,7 @@ public:
     bool GetInjured() { return m_injured; };
 
     void Render() override;
+    void Render(Rect2D camera_rect) override;
     void Update(float deltaTime, SDL_Event e, LevelMap* map) override;
 };
 
