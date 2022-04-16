@@ -11,7 +11,7 @@
 #define PLAYER_DEATH_TIME 5.0f
 
 #define MAP_WIDTH
-#define DEFAULT_TILESIZE 32
+#define DEFAULT_TILESIZE 16
 
 #define GRAVITY 1.5f
 #define SHAKE_DURATION 0.5f

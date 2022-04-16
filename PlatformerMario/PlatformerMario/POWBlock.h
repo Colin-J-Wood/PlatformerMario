@@ -19,7 +19,10 @@ public:
 	void Render();
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_single_sprite_w, m_single_sprite_h);  };
 	Vector2D GetPosition() { return m_position; };
+	Vector2D GetCenterPosition() { return Vector2D((m_position.x + (GetWidth() / 2)), (m_position.y + (GetHeight() / 2))); };
+	Vector2D GetTilePosition() { return Vector2D(GetCenterPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE); };
 	float GetHeight() { return m_texture->GetHeight(); };
+	float GetWidth() { return m_texture->GetWidth(); };
 	void TakeHit();
 	bool isAvailable() { return m_num_hits_left > 0; };
 

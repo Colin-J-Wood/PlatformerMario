@@ -15,10 +15,7 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 		cout << "Failed to load music.  Error: " << Mix_GetError() << endl;
 	}
 
-	if (Mix_PlayingMusic() == 0)
-	{
-		Mix_PlayMusic(m_music, -1);
-	}
+	Mix_PlayMusic(m_music, -1);
 
 	m_kill_koopa = new Sound("Sound/contact_kill.mp3");
 
@@ -37,9 +34,10 @@ GameScreenLevel1::~GameScreenLevel1()
 	delete(m_levelmap);
 	delete(m_powBlock);
 
-	Mix_HaltMusic();
+	Mix_FreeMusic(m_music);
 
 	m_enemies.clear();
+	m_blocks.clear();
 
 	m_background_texture = nullptr;
 	m_powBlock = nullptr;
@@ -50,7 +48,11 @@ void GameScreenLevel1::Render()
 	mario->Render();
 	luigi->Render();
 
-	m_powBlock->Render();
+	//render every block using foreach.
+	for (POWBlock* block : m_blocks)
+	{
+		block->Render();
+	}
 
 	//render every koopa using foreach.
 	for (Koopa* koopa : m_enemies)
@@ -113,33 +115,36 @@ SCREENS GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	UpdateEnemies(deltaTime, e, m_levelmap);
 
 	//collide with pow block
-	if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_powBlock->GetCollisionBox()))
+	for (int i = 0; i < m_blocks.size(); i++)
 	{
-		//only process this collision if the player was rising into the block
-		if ((mario->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
+		if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_blocks[i]->GetCollisionBox()))
 		{
-			m_powBlock->TakeHit();
-			m_score_mario += POW_SCORE;
-			DoScreenshake(deltaTime);
+			//only process this collision if the player was rising into the block
+			if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())))
+			{
+				m_blocks[i]->TakeHit();
+				m_score_mario += POW_SCORE;
+				DoScreenshake(deltaTime);
 
-			//set mario's velocity so he falls from the block, then correct his positioning.
-			mario->SetVelocity(Vector2D(mario->GetVelocity().x, 0.0f));
-			mario->SetPosition(Vector2D(mario->GetPosition().x, m_powBlock->GetPosition().y + m_powBlock->GetHeight()));
+				//set mario's velocity so he falls from the block, then correct his positioning.
+				mario->SetVelocity(Vector2D(mario->GetVelocity().x, 0.0f));
+				mario->SetPosition(Vector2D(mario->GetPosition().x, m_blocks[i]->GetPosition().y + m_blocks[i]->GetHeight()));
+			}
 		}
-	}
 
-	if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_powBlock->GetCollisionBox()))
-	{
-		//only process this collision if the player was rising into the block
-		if ((luigi->GetVelocity().y < 0.0f) && m_powBlock->isAvailable())
+		if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_blocks[i]->GetCollisionBox()))
 		{
-			m_powBlock->TakeHit();
-			m_score_luigi += POW_SCORE;
-			DoScreenshake(deltaTime);
+			//only process this collision if the player was rising into the block
+			if ((luigi->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (luigi->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (luigi->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())))
+			{
+				m_blocks[i]->TakeHit();
+				m_score_luigi += POW_SCORE;
+				DoScreenshake(deltaTime);
 
-			//set mario's velocity so he falls from the block, then correct his positioning.
-			luigi->SetVelocity(Vector2D(luigi->GetVelocity().x, 0.0f));
-			luigi->SetPosition(Vector2D(luigi->GetPosition().x, m_powBlock->GetPosition().y + m_powBlock->GetHeight()));
+				//set mario's velocity so he falls from the block, then correct his positioning.
+				luigi->SetVelocity(Vector2D(luigi->GetVelocity().x, 0.0f));
+				luigi->SetPosition(Vector2D(luigi->GetPosition().x, m_blocks[i]->GetPosition().y + m_blocks[i]->GetHeight()));
+			}
 		}
 	}
 
@@ -231,7 +236,8 @@ bool GameScreenLevel1::SetUpLevel()
 	luigi = new Luigi(m_renderer, "Images/entity/Luigi.png", Vector2D(256, 330));
 
 	m_levelmap = new LevelMap("Maps/level1.txt",DEFAULT_TILESIZE);
-	m_powBlock = new POWBlock(m_renderer, m_levelmap);
+	POWBlock* powBlock1 = new POWBlock(m_renderer, m_levelmap);
+	m_blocks.push_back(powBlock1);
 
 	return true;
 }
