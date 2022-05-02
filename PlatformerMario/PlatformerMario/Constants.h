@@ -21,3 +21,5 @@
 #define KOOPA_SPEED Vector2D(75.0f, 75.0f)
 #define KOOPA_RESPAWN_TIME 2.0f
 #define KOOPA_SCORE 800
+
+#define COLLECTIBLE_RADIUS 8.0f

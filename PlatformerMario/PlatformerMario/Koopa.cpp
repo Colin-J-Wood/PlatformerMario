@@ -25,6 +25,8 @@ Koopa::Koopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D s
 Koopa::~Koopa()
 {
 	m_renderer = nullptr;
+	delete(m_texture);
+	delete(m_jump_sound);
 }
 
 void Koopa::FlipRightwayUp(float deltaTime)

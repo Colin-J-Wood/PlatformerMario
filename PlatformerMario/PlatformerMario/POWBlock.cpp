@@ -121,7 +121,7 @@ void POWBlock::Render(Rect2D camera_rect)
 	}
 }
 
-void POWBlock::TakeHit()
+BLOCKTYPE POWBlock::TakeHit()
 {
 	m_hit_sound->PlaySound(0);
 	m_num_hits_left--;
@@ -134,4 +134,6 @@ void POWBlock::TakeHit()
 		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 1, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
 		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
 	}
+
+	return blocktype;
 }

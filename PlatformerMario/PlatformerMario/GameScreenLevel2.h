@@ -18,6 +18,7 @@
 #include "TextRenderer.h"
 #include "Character.h"
 #include "Collisions.h"
+#include "Collectible.h"
 
 class GameScreenLevel2 :
     public GameScreen
@@ -34,6 +35,8 @@ private:
 
     vector<Koopa*> m_enemies;
     vector<POWBlock*> m_blocks;
+    vector<Collectible*> m_collectibles;
+    Sound* m_collect_coin;
     Sound* m_kill_koopa;
     Mario* mario;
 
@@ -45,9 +48,18 @@ private:
     TextRenderer* m_text_mario_score;
     TextRenderer* m_text_game_over;
 
+    bool m_screenshake;
+    float m_shake_time;
+    float m_wobble;
+    float m_background_yPos;
+
     int m_score_mario;
     float m_game_over_time;
 
     void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);
+    void UpdateCollectibles(float deltaTime, SDL_Event e, LevelMap* map);
+    void UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map);
+
+    void DoScreenshake(float deltaTime);
 };
 

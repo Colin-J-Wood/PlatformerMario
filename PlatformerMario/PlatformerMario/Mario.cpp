@@ -29,6 +29,8 @@ Mario::Mario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 Mario::~Mario()
 {
 	m_renderer = nullptr;
+	delete(m_texture);
+	delete(m_jump_sound);
 }
 
 void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)

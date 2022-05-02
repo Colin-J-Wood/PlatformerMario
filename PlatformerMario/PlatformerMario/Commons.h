@@ -38,20 +38,35 @@ enum FACING
 //use this as a reference table when creating the map.
 enum TILETYPE
 {
-	AIR = 0,
-	FLOOR = 1,
-	PLATFORM = 2, //some checks, such as up, right and left, won't see a platform, as the player should be able to jump through it.
-	OBJECT = 3,
-	LAVA = 4
+	AIR,
+	FLOOR,
+	PLATFORM, //some checks, such as up, right and left, won't see a platform, as the player should be able to jump through it.
+	OBJECT,
+	LAVA
 };
 
 //list of blocking directions for characters that test for block.
 enum BLOCKDIRECTION
 {
-	RIGHT = 0,
-	UP = 1,
-	LEFT = 2,
-	DOWN = 3
+	RIGHT,
+	UP,
+	LEFT,
+	DOWN
+};
+
+//list of types of collectibles so characters can react accordingly to incoming powerups.
+enum COLLECTIBLETYPE
+{
+	COIN,
+	MUSHROOM
+};
+
+//list of types of blocks players can hit
+enum BLOCKTYPE
+{
+	POW,
+	DESTRUCTIBLE,
+	ITEM
 };
 
 struct Rect2D

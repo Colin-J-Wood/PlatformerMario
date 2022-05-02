@@ -30,6 +30,8 @@ Luigi::Luigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 Luigi::~Luigi()
 {
 	m_renderer = nullptr;
+	delete(m_texture);
+	delete(m_jump_sound);
 }
 
 void Luigi::Update(float deltaTime, SDL_Event e, LevelMap* map)

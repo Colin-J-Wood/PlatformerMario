@@ -24,6 +24,8 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 
 Character::~Character()
 {
+	delete(m_texture);
+	delete(m_jump_sound);
 	m_renderer = nullptr;
 }
 

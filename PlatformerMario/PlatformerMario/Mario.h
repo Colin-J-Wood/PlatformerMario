@@ -13,6 +13,7 @@ public:
 	bool GetCeilingHit() { return hit_ceiling; };
 	void LoseLife() { m_lives--; };
 	int GetLivesRemaining() { return m_lives; };
+	void SetLivesRemaining(int lives) { m_lives = lives; };
 
 private:
 	bool hit_ceiling = false;

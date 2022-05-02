@@ -24,7 +24,7 @@ public:
 	Vector2D GetTilePosition() { return Vector2D(GetCenterPosition().x / DEFAULT_TILESIZE, GetCenterPosition().y / DEFAULT_TILESIZE); };
 	float GetHeight() { return m_texture->GetHeight(); };
 	float GetWidth() { return m_texture->GetWidth(); };
-	void TakeHit();
+	virtual BLOCKTYPE TakeHit(); //override this for different take hit functionality.
 	bool isAvailable() { return m_num_hits_left > 0; };
 
 private:
@@ -33,6 +33,8 @@ private:
 	Texture2D* m_texture;
 	LevelMap* m_level_map;
 	Sound* m_hit_sound;
+
+	BLOCKTYPE blocktype = POW;
 
 	float m_single_sprite_w;
 	float m_single_sprite_h;

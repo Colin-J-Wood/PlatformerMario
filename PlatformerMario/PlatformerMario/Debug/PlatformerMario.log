@@ -1,6 +1,7 @@
-﻿  Texture2D.cpp
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,58): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\PlatformerMario\Texture2D.cpp(69,58): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  PlatformerMario.vcxproj -> C:\Users\chris\Documents\GitHub\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe
+﻿  GameScreenLevel2.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(25,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(26,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(89,89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe
