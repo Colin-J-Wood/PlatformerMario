@@ -56,6 +56,10 @@ private:
     int m_score_mario;
     float m_game_over_time;
 
+    void SetupEnemies();
+    void SetupCollectibles();
+    void SetupBlocks();
+
     void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);
     void UpdateCollectibles(float deltaTime, SDL_Event e, LevelMap* map);
     void UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map);

@@ -166,6 +166,9 @@
     <Image Include="Images\level\SuperMarioBrosMap1-1.png">
       <Filter>Resource Files\level</Filter>
     </Image>
+    <Image Include="Images\tile\DestructibleBlock.png">
+      <Filter>Resource Files\tile</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Maps\level1.txt">
@@ -186,6 +189,12 @@
       <Filter>Resource Files\sounds</Filter>
     </Media>
     <Media Include="Sound\contact_kill.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="Sound\get_coin.mp3">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="Sound\pow.mp3">
       <Filter>Resource Files\sounds</Filter>
     </Media>
   </ItemGroup>

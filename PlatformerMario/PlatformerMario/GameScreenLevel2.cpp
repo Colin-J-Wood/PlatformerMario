@@ -143,15 +143,33 @@ bool GameScreenLevel2::SetUpLevel()
 
 	m_levelmap = new LevelMap("Maps/level2.txt", DEFAULT_TILESIZE);
 
-	POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", 3);
+	SetupBlocks();
+	SetupCollectibles();
+	SetupEnemies();
+
+	return true;
+}
+
+//a trio of simple method blocks to organize the setting up of assets are below
+void GameScreenLevel2::SetupBlocks()
+{
+	POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", "Sound/pow.mp3", 3, POW, Vector2D((SCREEN_WIDTH / 2) - 16, 270));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D((SCREEN_WIDTH / 2) + 16, 270));
 	m_blocks.push_back(test_block);
 	test_block = nullptr;
+}
 
+void GameScreenLevel2::SetupEnemies()
+{
+	
+}
+
+void GameScreenLevel2::SetupCollectibles()
+{
 	Collectible* test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(128, 320));
 	m_collectibles.push_back(test_coin);
 	test_coin = nullptr;
-
-	return true;
 }
 
 void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map)

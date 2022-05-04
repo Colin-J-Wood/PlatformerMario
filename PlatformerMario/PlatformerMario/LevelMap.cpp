@@ -112,11 +112,6 @@ void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 		{
 			row[x] = tiletype;
 			map[y] = row;
-			cout << "Coordinates replaced:" << endl;
-			cout << "x: " << x << endl;
-			cout << "y: " << y << endl;
-			for (TILETYPE t : row) cout << t;
-			cout << endl;
 		}
 	}
 }

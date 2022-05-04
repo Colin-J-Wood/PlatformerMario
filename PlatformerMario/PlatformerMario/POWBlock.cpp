@@ -51,23 +51,27 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, string filename, int n
 	m_hit_sound = new Sound("Sound/pow.mp3");
 }
 
-//this constructor allows setting a position manually.
-POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, Vector2D position, string filename, int num_hits)
+//this version adds sound and block type support.
+POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, string image_filename, string sound_filename, int num_hits, BLOCKTYPE blocktype, Vector2D position)
 {
+	//first create the texture based on the passed file name.
+	//file name is passed so multiple blocks can inherit from this class.
 	m_texture = new Texture2D(renderer);
-	if (!m_texture->LoadFromFile(filename))
+	if (!m_texture->LoadFromFile(image_filename))
 	{
 		cout << "Failed to load texture." << endl;
 		return;
 	}
 
+	//setup the references and variables.
 	m_level_map = map;
-	m_single_sprite_w = m_texture->GetWidth() / 3; //there are three slices of this sprite.
-	m_single_sprite_h = m_texture->GetHeight();
 	m_num_hits_left = num_hits;
+	m_single_sprite_w = m_texture->GetWidth() / num_hits; //there are num_hits slices of this sprite.
+	m_single_sprite_h = m_texture->GetHeight();
 	m_position = position;
+	m_blocktype = blocktype;
 
-	m_hit_sound = new Sound("Sound/pow.mp3");
+	m_hit_sound = new Sound(sound_filename);
 }
 
 POWBlock::~POWBlock()
@@ -87,6 +91,7 @@ void POWBlock::Render()
 		int left = m_single_sprite_w * (m_num_hits_left - 1);
 
 		//get a portion of the sprite
+		//the maximum number of hits tells how many pixels wide the image is as well, since each slice is one state.
 		SDL_Rect portion_of_sprite = { left, 0, m_single_sprite_w, m_single_sprite_h };
 
 		//determine where to draw it.
@@ -135,5 +140,5 @@ BLOCKTYPE POWBlock::TakeHit()
 		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
 	}
 
-	return blocktype;
+	return m_blocktype;
 }

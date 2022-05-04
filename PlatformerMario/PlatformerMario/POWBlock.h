@@ -13,7 +13,7 @@ public:
 	POWBlock();
 	POWBlock(SDL_Renderer* renderer, LevelMap* map);
 	POWBlock(SDL_Renderer* renderer, LevelMap* map, string filename, int num_hits);
-	POWBlock(SDL_Renderer* renderer, LevelMap* map, Vector2D position, string filename, int num_hits);
+	POWBlock(SDL_Renderer* renderer, LevelMap* map, string image_filename, string sound_filename, int num_hits, BLOCKTYPE blocktype, Vector2D position);
 	~POWBlock();
 
 	void Render();
@@ -34,7 +34,7 @@ private:
 	LevelMap* m_level_map;
 	Sound* m_hit_sound;
 
-	BLOCKTYPE blocktype = POW;
+	BLOCKTYPE m_blocktype = POW;
 
 	float m_single_sprite_w;
 	float m_single_sprite_h;
