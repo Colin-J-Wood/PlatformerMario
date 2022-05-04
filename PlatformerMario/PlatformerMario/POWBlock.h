@@ -16,6 +16,7 @@ public:
 	POWBlock(SDL_Renderer* renderer, LevelMap* map, string image_filename, string sound_filename, int num_hits, BLOCKTYPE blocktype, Vector2D position);
 	~POWBlock();
 
+	void Update(float deltaTime);
 	void Render();
 	void Render(Rect2D camera_rect);
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_single_sprite_w, m_single_sprite_h);  };
@@ -39,5 +40,7 @@ private:
 	float m_single_sprite_w;
 	float m_single_sprite_h;
 	int m_num_hits_left;
+	int m_num_hits_max;
+	float m_time_since_gone;
 };
 

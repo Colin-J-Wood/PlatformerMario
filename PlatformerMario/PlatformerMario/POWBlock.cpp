@@ -66,6 +66,7 @@ POWBlock::POWBlock(SDL_Renderer* renderer, LevelMap* map, string image_filename,
 	//setup the references and variables.
 	m_level_map = map;
 	m_num_hits_left = num_hits;
+	m_num_hits_max = num_hits;
 	m_single_sprite_w = m_texture->GetWidth() / num_hits; //there are num_hits slices of this sprite.
 	m_single_sprite_h = m_texture->GetHeight();
 	m_position = position;
@@ -81,6 +82,23 @@ POWBlock::~POWBlock()
 	m_renderer = nullptr;
 	m_texture = nullptr;
 	m_level_map = nullptr;
+}
+
+void POWBlock::Update(float deltaTime)
+{
+	//certain types of blocks should update in different fashions, such as respawning.
+	switch (m_blocktype)
+	{
+	case DESTRUCTIBLE:
+		if (m_num_hits_left <= 0) m_time_since_gone += deltaTime;
+		if (m_time_since_gone > DESTRUCTIBLE_RESPAWN_TIME)
+		{
+			m_time_since_gone = 0.0f;
+			m_num_hits_left = m_num_hits_max;
+		}
+
+		break;
+	}
 }
 
 void POWBlock::Render()

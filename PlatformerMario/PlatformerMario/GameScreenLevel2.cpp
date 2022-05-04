@@ -273,6 +273,9 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 					mario->SetPosition(Vector2D(mario->GetPosition().x, m_blocks[i]->GetPosition().y + m_blocks[i]->GetHeight()));
 				}
 			}
+
+			//then do the update
+			m_blocks[i]->Update(deltaTime);
 		}
 	}
 }
