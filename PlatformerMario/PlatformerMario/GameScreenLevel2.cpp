@@ -179,10 +179,6 @@ void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 		int enemyIndexToDelete = -1;
 		for (unsigned int i = 0; i < m_enemies.size(); i++)
 		{
-			//enemies too far off the screen should be killed
-			if ((m_enemies[i]->GetPosition().x < camera.x - 100) ||
-				(m_enemies[i]->GetPosition().x > camera.x + SCREEN_WIDTH + 100)) m_enemies[i]->SetAlive(false);
-
 			//also kill if the enemy has fallen out of the level
 			if (m_enemies[i]->GetPosition().y > m_background_texture->GetHeight() + m_enemies[i]->GetHeight())
 			{
