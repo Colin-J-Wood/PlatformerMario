@@ -197,5 +197,8 @@
     <Media Include="Sound\pow.mp3">
       <Filter>Resource Files\sounds</Filter>
     </Media>
+    <Media Include="Sound\destroy.mp3">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>

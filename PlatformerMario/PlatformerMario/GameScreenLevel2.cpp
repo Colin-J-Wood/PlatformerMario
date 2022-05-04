@@ -265,6 +265,7 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 						DoScreenshake(deltaTime);
 						break;
 					case DESTRUCTIBLE:
+						m_score_mario += DESTROY_SCORE;
 						break;
 					case ITEM:
 						break;

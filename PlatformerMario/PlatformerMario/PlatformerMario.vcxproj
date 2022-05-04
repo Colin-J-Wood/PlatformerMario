@@ -204,6 +204,7 @@
     <Media Include="Music\Mario.mp3" />
     <Media Include="Music\MarioUnderworld.mp3" />
     <Media Include="Sound\contact_kill.wav" />
+    <Media Include="Sound\destroy.mp3" />
     <Media Include="Sound\get_coin.mp3" />
     <Media Include="Sound\player_jump.mp3" />
     <Media Include="Sound\pow.mp3" />
