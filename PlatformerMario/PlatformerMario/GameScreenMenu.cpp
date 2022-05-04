@@ -13,7 +13,6 @@ GameScreenMenu::GameScreenMenu(SDL_Renderer* renderer) : GameScreen(renderer)
 
 	m_level_1_button = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
 	m_level_2_button = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
-	m_high_scores_button = new TextRenderer(renderer, "Fonts/kongtext.ttf", 15);
 }
 
 GameScreenMenu::~GameScreenMenu()
@@ -21,7 +20,6 @@ GameScreenMenu::~GameScreenMenu()
 	delete(m_logo);
 	delete(m_level_1_button);
 	delete(m_level_2_button);
-	delete(m_high_scores_button);
 }
 
 void GameScreenMenu::Render()
@@ -30,7 +28,6 @@ void GameScreenMenu::Render()
 
 	m_level_1_button->Render(Vector2D(150, 300));
 	m_level_2_button->Render(Vector2D(150, 320));
-	m_high_scores_button->Render(Vector2D(150, 340));
 }
 
 SCREENS GameScreenMenu::Update(float deltaTime, SDL_Event e)
@@ -42,13 +39,13 @@ SCREENS GameScreenMenu::Update(float deltaTime, SDL_Event e)
 		{
 		case SDLK_DOWN:
 			m_selection++;
-			if (m_selection > 2) m_selection = 0;
+			if (m_selection > 1) m_selection = 0;
 
 			break;
 
 		case SDLK_UP:
 			m_selection--;
-			if (m_selection < 0) m_selection = 2;
+			if (m_selection < 0) m_selection = 1;
 
 			break;
 
@@ -64,10 +61,6 @@ SCREENS GameScreenMenu::Update(float deltaTime, SDL_Event e)
 				return SCREEN_LEVEL2;
 				break;
 
-			case 2:
-				//screen high scores
-				break;
-
 			}
 		}
 	}
@@ -77,19 +70,11 @@ SCREENS GameScreenMenu::Update(float deltaTime, SDL_Event e)
 	case 0:
 		m_level_1_button->LoadString("> Level 1", { 255, 255, 255, 255 });
 		m_level_2_button->LoadString("  Level 2", { 255, 255, 255, 255 });
-		m_high_scores_button->LoadString("  High Scores", { 255, 255, 255, 255 });
 		break;
 		
 	case 1:
 		m_level_1_button->LoadString("  Level 1", { 255, 255, 255, 255 });
 		m_level_2_button->LoadString("> Level 2", { 255, 255, 255, 255 });
-		m_high_scores_button->LoadString("  High Scores", { 255, 255, 255, 255 });
-		break;
-
-	case 2:
-		m_level_1_button->LoadString("  Level 1", { 255, 255, 255, 255 });
-		m_level_2_button->LoadString("  Level 2", { 255, 255, 255, 255 });
-		m_high_scores_button->LoadString("> High Scores", { 255, 255, 255, 255 });
 		break;
 	}
 
