@@ -57,7 +57,7 @@ private:
     int m_score_luigi;
     float m_game_over_time;
 
-    void DoScreenshake(float deltaTime);
+    void DoScreenshake(float deltaTime, bool was_mario);
 
     void UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map);
     void CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed);

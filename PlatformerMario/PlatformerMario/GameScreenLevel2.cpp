@@ -153,11 +153,12 @@ bool GameScreenLevel2::SetUpLevel()
 //a trio of simple method blocks to organize the setting up of assets are below
 void GameScreenLevel2::SetupBlocks()
 {
-	POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", "Sound/pow.mp3", 3, POW, Vector2D((SCREEN_WIDTH / 2) - 16, 270));
-	m_blocks.push_back(test_block);
-	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D((SCREEN_WIDTH / 2) + 16, 270));
-	m_blocks.push_back(test_block);
-	test_block = nullptr;
+	//use the below as a template for copy pasting assets
+	//POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", "Sound/pow.mp3", 3, POW, Vector2D((SCREEN_WIDTH / 2) - 16, 270));
+	//m_blocks.push_back(test_block);
+	//test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D((SCREEN_WIDTH / 2) + 16, 270));
+	//m_blocks.push_back(test_block);
+	//test_block = nullptr;
 }
 
 void GameScreenLevel2::SetupEnemies()
@@ -167,9 +168,10 @@ void GameScreenLevel2::SetupEnemies()
 
 void GameScreenLevel2::SetupCollectibles()
 {
-	Collectible* test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(128, 320));
-	m_collectibles.push_back(test_coin);
-	test_coin = nullptr;
+	//use the below as a template for copy pasting assets
+	//Collectible* test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(128, 320));
+	//m_collectibles.push_back(test_coin);
+	//test_coin = nullptr;
 }
 
 void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map)
@@ -219,7 +221,7 @@ void GameScreenLevel2::UpdateCollectibles(float deltaTime, SDL_Event e, LevelMap
 				case COIN:
 					//coin simply gives score.
 					m_collect_coin->PlaySound(0);
-					m_score_mario += 200;
+					m_score_mario += COLLECTIBLE_SCORE;
 					
 					break;
 				case MUSHROOM:
@@ -289,6 +291,8 @@ void GameScreenLevel2::DoScreenshake(float deltaTime)
 	//make all enemies on screen take damage
 	for (Koopa* koopa : m_enemies)
 	{
-		if ((koopa->GetPosition().x > camera.x - koopa->GetWidth()) && (koopa->GetPosition().x < SCREEN_WIDTH + camera.x)) koopa->TakeDamage(deltaTime);
+		koopa->TakeDamage(deltaTime);
+		//give score for each koopa hit.
+		m_score_mario += POW_SCORE;
 	}
 }

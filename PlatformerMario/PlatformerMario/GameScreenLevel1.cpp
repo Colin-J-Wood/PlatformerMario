@@ -124,7 +124,7 @@ SCREENS GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 			{
 				m_blocks[i]->TakeHit();
 				m_score_mario += POW_SCORE;
-				DoScreenshake(deltaTime);
+				DoScreenshake(deltaTime, false);
 
 				//set mario's velocity so he falls from the block, then correct his positioning.
 				mario->SetVelocity(Vector2D(mario->GetVelocity().x, 0.0f));
@@ -139,7 +139,7 @@ SCREENS GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 			{
 				m_blocks[i]->TakeHit();
 				m_score_luigi += POW_SCORE;
-				DoScreenshake(deltaTime);
+				DoScreenshake(deltaTime, true);
 
 				//set mario's velocity so he falls from the block, then correct his positioning.
 				luigi->SetVelocity(Vector2D(luigi->GetVelocity().x, 0.0f));
@@ -242,7 +242,7 @@ bool GameScreenLevel1::SetUpLevel()
 	return true;
 }
 
-void GameScreenLevel1::DoScreenshake(float deltaTime)
+void GameScreenLevel1::DoScreenshake(float deltaTime, bool was_mario)
 {
 	m_screenshake = true;
 	m_shake_time = SHAKE_DURATION;
@@ -252,6 +252,15 @@ void GameScreenLevel1::DoScreenshake(float deltaTime)
 	for (Koopa* koopa : m_enemies)
 	{
 		koopa->TakeDamage(deltaTime);
+		//give a score for every koopa hit using this.
+		if (was_mario)
+		{
+			m_score_mario += POW_SCORE;
+		}
+		else
+		{
+			m_score_luigi += POW_SCORE;
+		}
 	}
 }
 
