@@ -31,6 +31,7 @@ GameScreenLevel1::~GameScreenLevel1()
 	delete(m_levelmap);
 	delete(m_kill_koopa);
 
+	Mix_HaltMusic();
 	Mix_FreeMusic(m_music);
 
 	m_enemies.clear();

@@ -49,10 +49,12 @@ void Mario::Update(float deltaTime, SDL_Event e, LevelMap* map)
 		{
 		case SDLK_LEFT:
 			m_moving_left = true;
+			m_facing_direction = FACING_LEFT;
 
 			break;
 		case SDLK_RIGHT:
 			m_moving_right = true;
+			m_facing_direction = FACING_RIGHT;
 
 			break;
 		case SDLK_RSHIFT:

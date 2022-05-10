@@ -26,6 +26,7 @@ GameScreenLevel2::~GameScreenLevel2()
 	delete(m_levelmap);
 	delete(m_kill_koopa);
 
+	Mix_HaltMusic();
 	Mix_FreeMusic(m_music);
 
 	m_enemies.clear();
@@ -42,6 +43,13 @@ void GameScreenLevel2::Render()
 	// SDL_Rect source_rect = SDL_Rect{ 0, 0, m_texture->GetWidth(), m_texture->GetHeight() };
 	SDL_Rect source_rect = SDL_Rect{ 0, 0, m_background_texture->GetWidth(), m_background_texture->GetHeight() };
 	SDL_Rect destination_rect = SDL_Rect{ (int)camera.x, (int)(camera.y + m_background_yPos), m_background_texture->GetWidth(), m_background_texture->GetHeight() };
+
+	//render every koopa using foreach.  be behind the background so they look to be behind pipes
+	for (Koopa* koopa : m_enemies)
+	{
+		koopa->Render(camera);
+	}
+
 	m_background_texture->Render(source_rect, destination_rect, SDL_FLIP_NONE);
 
 	//change renderers to support camera clip.
@@ -51,12 +59,6 @@ void GameScreenLevel2::Render()
 	for (POWBlock* block : m_blocks)
 	{
 		block->Render(camera);
-	}
-
-	//render every koopa using foreach.
-	for (Koopa* koopa : m_enemies)
-	{
-		koopa->Render(camera);
 	}
 
 	for (Collectible* collectible : m_collectibles)
@@ -138,7 +140,7 @@ bool GameScreenLevel2::SetUpLevel()
 		return false;
 	}
 
-	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 330));
+	mario = new Mario(m_renderer, "Images/entity/Mario.png", Vector2D(64, 320));
 	mario->SetLivesRemaining(1);
 
 	m_levelmap = new LevelMap("Maps/level2.txt", DEFAULT_TILESIZE);
@@ -153,12 +155,52 @@ bool GameScreenLevel2::SetUpLevel()
 //a trio of simple method blocks to organize the setting up of assets are below
 void GameScreenLevel2::SetupBlocks()
 {
-	//use the below as a template for copy pasting assets
-	//POWBlock* test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", "Sound/pow.mp3", 3, POW, Vector2D((SCREEN_WIDTH / 2) - 16, 270));
-	//m_blocks.push_back(test_block);
-	//test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D((SCREEN_WIDTH / 2) + 16, 270));
-	//m_blocks.push_back(test_block);
-	//test_block = nullptr;
+	POWBlock* test_block;
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/PowBlock.png", "Sound/pow.mp3", 3, POW, Vector2D(896, 256));
+	m_blocks.push_back(test_block);
+	
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(352, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(384, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(416, 256));
+	m_blocks.push_back(test_block);
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1696, 128));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1664, 128));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1728, 128));
+	m_blocks.push_back(test_block);
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1440, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1472, 256));
+	m_blocks.push_back(test_block);
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1024, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1056, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1088, 256));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1120, 256));
+	m_blocks.push_back(test_block);
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(416, 160));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(448, 160));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(480, 160));
+	m_blocks.push_back(test_block);
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(512, 160));
+	m_blocks.push_back(test_block);
+
+	test_block = new POWBlock(m_renderer, m_levelmap, "Images/tile/DestructibleBlock.png", "Sound/destroy.mp3", 1, DESTRUCTIBLE, Vector2D(1760, 256));
+	m_blocks.push_back(test_block);
+
+	test_block = nullptr;
 }
 
 void GameScreenLevel2::SetupEnemies()
