@@ -40,7 +40,6 @@ private:
     Sound* m_kill_koopa;
     Mario* mario;
 
-    bool SetUpLevel();
     Texture2D* m_background_texture;
     LevelMap* m_levelmap;
     Mix_Music* m_music;
@@ -59,7 +58,8 @@ private:
     int m_score_mario;
     float m_game_over_time;
 
-    void SetupEnemies();
+    bool SetUpLevel();
+
     void SetupCollectibles();
     void SetupBlocks();
 
