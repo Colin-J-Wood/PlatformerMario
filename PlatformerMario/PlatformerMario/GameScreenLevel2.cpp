@@ -385,6 +385,9 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 				//only process this collision if the player was rising into the block
 				if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())) && (mario->GetPosition().y > m_blocks[i]->GetCenterPosition().y + DESTRUCTIBLE_TOLERANCE))
 				{
+					Rect2D new_box = mario->GetCollisionBox();
+					new_box.y -= DEFAULT_TILESIZE * 2;
+
 					switch (m_blocks[i]->TakeHit())
 					{
 					case POW:
@@ -397,7 +400,7 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 						//flip the enemy if there was one above it.
 						for (int e = 0; e < m_enemies.size(); e++) 
 						{
-							if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_enemies[e]->GetCollisionBox()))
+							if (Collisions::Instance()->Box(new_box, m_enemies[e]->GetCollisionBox()))
 							{
 								m_enemies[e]->TakeDamage(deltaTime);
 								m_score_mario += DESTROY_DAMAGE_SCORE;
