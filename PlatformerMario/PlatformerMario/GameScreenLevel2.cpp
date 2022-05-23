@@ -74,6 +74,43 @@ SCREENS GameScreenLevel2::Update(float deltaTime, SDL_Event e)
 {
 	mario->Update(deltaTime, e, m_levelmap);
 
+	//add a new enemy if the list has less.
+	if (m_enemies.size() < 12)
+	{
+		//respawn on a timer
+		m_respawn_time += deltaTime;
+		if (m_respawn_time > KOOPA_RESPAWN_TIME)
+		{
+			//spawn at a random pipe
+			int spawnpoint = rand() % 6 + 1;
+
+			//coordinated with each of the pipe positions
+			switch (spawnpoint) {
+			case 1:
+				CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED);
+				break;
+			case 2:
+				CreateKoopa(Vector2D(650, 32), FACING_LEFT, KOOPA_SPEED);
+				break;
+			case 3:
+				CreateKoopa(Vector2D(725, 32), FACING_RIGHT, KOOPA_SPEED);
+				break;
+			case 4:
+				CreateKoopa(Vector2D(1115, 32), FACING_LEFT, KOOPA_SPEED);
+				break;
+			case 5:
+				CreateKoopa(Vector2D(1200, 32), FACING_RIGHT, KOOPA_SPEED);
+				break;
+			case 6:
+				CreateKoopa(Vector2D(1875, 32), FACING_LEFT, KOOPA_SPEED);
+				break;
+			}
+
+			//then reset the timer for the next enemy.
+			m_respawn_time = 0.0f;
+		}
+	}
+
 	//center camera to half mario's position
 	camera.x = -mario->GetPosition().x + (SCREEN_WIDTH / 2);
 	//unless that's less than zero, in such case place it at zero.
@@ -267,6 +304,7 @@ void GameScreenLevel2::UpdateCollectibles(float deltaTime, SDL_Event e, LevelMap
 					
 					break;
 				case MUSHROOM:
+					//unfinished feature.
 					break;
 				}
 
@@ -337,4 +375,10 @@ void GameScreenLevel2::DoScreenshake(float deltaTime)
 		//give score for each koopa hit.
 		m_score_mario += POW_SCORE;
 	}
+}
+
+void GameScreenLevel2::CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed)
+{
+	Koopa* koopa = new Koopa(m_renderer, "Images/entity/Koopa.png", m_levelmap, position, direction, target_speed);
+	m_enemies.push_back(koopa);
 }

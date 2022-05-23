@@ -53,6 +53,9 @@ private:
     float m_wobble;
     float m_background_yPos;
 
+    float m_respawn_time;
+    float m_coin_respawn_time;
+
     int m_score_mario;
     float m_game_over_time;
 
@@ -65,5 +68,6 @@ private:
     void UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map);
 
     void DoScreenshake(float deltaTime);
+    void CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed);
 };
 
