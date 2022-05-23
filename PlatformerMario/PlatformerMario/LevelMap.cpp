@@ -101,8 +101,6 @@ void LevelMap::SetTileAt(int x, int y, TILETYPE tiletype)
 	else
 	{
 		row = map[y];
-		for (TILETYPE t : row) cout << t;
-		cout << endl;
 
 		if ((x >= row.size()) || (x < 0))
 		{

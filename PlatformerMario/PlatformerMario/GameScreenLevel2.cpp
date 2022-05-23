@@ -25,6 +25,7 @@ GameScreenLevel2::~GameScreenLevel2()
 	delete(mario);
 	delete(m_levelmap);
 	delete(m_kill_koopa);
+	delete(m_collect_coin);
 
 	Mix_HaltMusic();
 	Mix_FreeMusic(m_music);
@@ -74,6 +75,54 @@ SCREENS GameScreenLevel2::Update(float deltaTime, SDL_Event e)
 {
 	mario->Update(deltaTime, e, m_levelmap);
 
+	//add a new enemy if the list has less.
+	if (m_enemies.size() < 12)
+	{
+		//respawn on a timer
+		m_respawn_time += deltaTime;
+		if (m_respawn_time > KOOPA_RESPAWN_TIME)
+		{
+			//spawn at a random pipe
+			int spawnpoint = rand() % 6 + 1;
+
+			//coordinated with each of the pipe positions
+			switch (spawnpoint) {
+			case 1:
+				CreateKoopa(Vector2D(20, 32), FACING_RIGHT, KOOPA_SPEED_2);
+				break;
+			case 2:
+				CreateKoopa(Vector2D(650, 32), FACING_LEFT, KOOPA_SPEED_2);
+				break;
+			case 3:
+				CreateKoopa(Vector2D(725, 32), FACING_RIGHT, KOOPA_SPEED_2);
+				break;
+			case 4:
+				CreateKoopa(Vector2D(1115, 32), FACING_LEFT, KOOPA_SPEED_2);
+				break;
+			case 5:
+				CreateKoopa(Vector2D(1200, 32), FACING_RIGHT, KOOPA_SPEED_2);
+				break;
+			case 6:
+				CreateKoopa(Vector2D(1875, 32), FACING_LEFT, KOOPA_SPEED_2);
+				break;
+			}
+
+			//then reset the timer for the next enemy.
+			m_respawn_time = 0.0f;
+		}
+	}
+
+	//respawn coins every so often when the coins have been collected.
+	if (m_collectibles.empty())
+	{
+		m_coin_respawn_time += deltaTime;
+		if (m_coin_respawn_time > COLLECTIBLE_RESPAWN_TIME)
+		{
+			SetupCollectibles();
+			m_coin_respawn_time = 0.0f;
+		}
+	}
+
 	//center camera to half mario's position
 	camera.x = -mario->GetPosition().x + (SCREEN_WIDTH / 2);
 	//unless that's less than zero, in such case place it at zero.
@@ -94,6 +143,9 @@ SCREENS GameScreenLevel2::Update(float deltaTime, SDL_Event e)
 	}
 	//keep mario on screen, only vertical fallout should kill.
 	if (mario->GetPosition().x < 0) mario->SetPosition(Vector2D(0, mario->GetPosition().y));
+
+	//make koopa flip if on a tile above the player.
+
 
 	//do the screenshake if required.
 	if (m_screenshake)
@@ -146,8 +198,6 @@ bool GameScreenLevel2::SetUpLevel()
 	m_levelmap = new LevelMap("Maps/level2.txt", DEFAULT_TILESIZE);
 
 	SetupBlocks();
-	SetupCollectibles();
-	SetupEnemies();
 
 	return true;
 }
@@ -203,17 +253,20 @@ void GameScreenLevel2::SetupBlocks()
 	test_block = nullptr;
 }
 
-void GameScreenLevel2::SetupEnemies()
-{
-	
-}
-
 void GameScreenLevel2::SetupCollectibles()
 {
-	//use the below as a template for copy pasting assets
-	//Collectible* test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(128, 320));
-	//m_collectibles.push_back(test_coin);
-	//test_coin = nullptr;
+	Collectible* test_coin;
+
+	test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(410, 32));
+	m_collectibles.push_back(test_coin);
+
+	test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(960, 64));
+	m_collectibles.push_back(test_coin);
+
+	test_coin = new Collectible(m_renderer, "Images/item/Coin.png", m_levelmap, Vector2D(1540, 96));
+	m_collectibles.push_back(test_coin);
+
+	test_coin = nullptr;
 }
 
 void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map)
@@ -223,6 +276,39 @@ void GameScreenLevel2::UpdateEnemies(float deltaTime, SDL_Event e, LevelMap* map
 		int enemyIndexToDelete = -1;
 		for (unsigned int i = 0; i < m_enemies.size(); i++)
 		{
+			//kill if mario touches whilst flipped, otherwise kill mario.
+			if (Collisions::Instance()->Circle(mario->GetCenterPosition(), m_enemies[i]->GetCenterPosition(), mario->GetCollisionRadius(), m_enemies[i]->GetCollisionRadius()))
+			{
+				if (m_enemies[i]->GetInjured())
+				{
+					m_enemies.erase(m_enemies.begin() + i);
+					m_score_mario += KOOPA_SCORE;
+					m_kill_koopa->PlaySound(0);
+				}
+				else
+				{
+					mario->LoseLife();
+					mario->SetAlive(false);
+				}
+			}
+
+			//allow the players to hit the ceiling and trace a box trace above the ceiling.
+			if (mario->GetAlive() && mario->GetCeilingHit())
+			{
+				//process the translated collision box.
+				Rect2D new_box = mario->GetCollisionBox();
+				//it should be an entire two tiles above the player.
+				new_box.y -= DEFAULT_TILESIZE * 2;
+
+				//do the collision check with the new translated box.
+				if (Collisions::Instance()->Box(m_enemies[i]->GetCollisionBox(), new_box) && !m_enemies[i]->GetInjured())
+				{
+					//damage if not already flipped over.
+					m_enemies[i]->TakeDamage(deltaTime);
+					m_score_mario += KOOPA_SCORE;
+				}
+			}
+
 			//also kill if the enemy has fallen out of the level
 			if (m_enemies[i]->GetPosition().y > m_background_texture->GetHeight() + m_enemies[i]->GetHeight())
 			{
@@ -267,6 +353,7 @@ void GameScreenLevel2::UpdateCollectibles(float deltaTime, SDL_Event e, LevelMap
 					
 					break;
 				case MUSHROOM:
+					//unfinished feature.
 					break;
 				}
 
@@ -296,8 +383,11 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 			if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_blocks[i]->GetCollisionBox()))
 			{
 				//only process this collision if the player was rising into the block
-				if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())))
+				if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())) && (mario->GetPosition().y > m_blocks[i]->GetCenterPosition().y + DESTRUCTIBLE_TOLERANCE))
 				{
+					Rect2D new_box = mario->GetCollisionBox();
+					new_box.y -= DEFAULT_TILESIZE * 2;
+
 					switch (m_blocks[i]->TakeHit())
 					{
 					case POW:
@@ -306,6 +396,18 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 						break;
 					case DESTRUCTIBLE:
 						m_score_mario += DESTROY_SCORE;
+
+						//flip the enemy if there was one above it.
+						for (int e = 0; e < m_enemies.size(); e++) 
+						{
+							if (Collisions::Instance()->Box(new_box, m_enemies[e]->GetCollisionBox()))
+							{
+								m_enemies[e]->TakeDamage(deltaTime);
+								m_score_mario += DESTROY_DAMAGE_SCORE;
+								m_score_mario += KOOPA_SCORE;
+							}
+						}
+						
 						break;
 					case ITEM:
 						break;
@@ -337,4 +439,10 @@ void GameScreenLevel2::DoScreenshake(float deltaTime)
 		//give score for each koopa hit.
 		m_score_mario += POW_SCORE;
 	}
+}
+
+void GameScreenLevel2::CreateKoopa(Vector2D position, FACING direction, Vector2D target_speed)
+{
+	Koopa* koopa = new Koopa(m_renderer, "Images/entity/Koopa.png", m_levelmap, position, direction, target_speed);
+	m_enemies.push_back(koopa);
 }

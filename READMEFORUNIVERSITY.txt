@@ -1,0 +1,1 @@
+You will need the Tiled software to open the tilemap used to create the asset for Level 2.  It simplified my process of copying and pasting tile bitmaps into a single png.

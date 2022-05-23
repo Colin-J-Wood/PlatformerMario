@@ -1,7 +1,50 @@
-﻿  GameScreenLevel2.cpp
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\Character.h(68,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  LevelMap.cpp
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(72,9): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(79,10): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(97,9): warning C4018: '>=': signed/unsigned mismatch
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\LevelMap.cpp(105,10): warning C4018: '>=': signed/unsigned mismatch
+  POWBlock.cpp
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(26,49): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
 D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.h(27,47): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\GameScreenLevel2.cpp(90,89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(24,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(25,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(46,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(47,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(70,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(71,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(99,102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(99,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(100,106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(100,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(101,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(101,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(102,86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(102,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(114,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(118,43): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(118,43): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(118,62): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(118,62): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(123,4): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(123,4): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(123,23): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(123,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(136,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(139,43): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(139,43): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(139,62): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(139,62): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(144,4): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(144,4): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(144,23): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(144,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(160,101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(160,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(161,105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(161,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(162,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(162,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(163,85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\PlatformerMario\POWBlock.cpp(163,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   PlatformerMario.vcxproj -> D:\uni\Learning\Engines\PlatformerMario\PlatformerMario\Debug\PlatformerMario.exe

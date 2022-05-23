@@ -95,6 +95,11 @@ void POWBlock::Update(float deltaTime)
 		{
 			m_time_since_gone = 0.0f;
 			m_num_hits_left = m_num_hits_max;
+
+			m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE), (GetPosition().y / DEFAULT_TILESIZE) + 1, FLOOR);
+			m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE) + 1, (GetPosition().y / DEFAULT_TILESIZE) + 1, FLOOR);
+			m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE), (GetPosition().y / DEFAULT_TILESIZE), FLOOR);
+			m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE) + 1, (GetPosition().y / DEFAULT_TILESIZE), FLOOR);
 		}
 
 		break;
@@ -152,10 +157,10 @@ BLOCKTYPE POWBlock::TakeHit()
 	if (m_num_hits_left <= 0)
 	{
 		m_num_hits_left = 0;
-		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 1, (GetCenterPosition().y / DEFAULT_TILESIZE) - 1, AIR);
-		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE) - 1, AIR);
-		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 1, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
-		m_level_map->SetTileAt((GetCenterPosition().x / DEFAULT_TILESIZE) - 2, (GetCenterPosition().y / DEFAULT_TILESIZE), AIR);
+		m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE), (GetPosition().y / DEFAULT_TILESIZE) + 1, AIR);
+		m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE) + 1, (GetPosition().y / DEFAULT_TILESIZE) + 1, AIR);
+		m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE), (GetPosition().y / DEFAULT_TILESIZE), AIR);
+		m_level_map->SetTileAt((GetPosition().x / DEFAULT_TILESIZE) + 1, (GetPosition().y / DEFAULT_TILESIZE), AIR);
 	}
 
 	return m_blocktype;
