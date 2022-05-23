@@ -25,6 +25,7 @@ GameScreenLevel2::~GameScreenLevel2()
 	delete(mario);
 	delete(m_levelmap);
 	delete(m_kill_koopa);
+	delete(m_collect_coin);
 
 	Mix_HaltMusic();
 	Mix_FreeMusic(m_music);
@@ -382,7 +383,7 @@ void GameScreenLevel2::UpdateBlocks(float deltaTime, SDL_Event e, LevelMap* map)
 			if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_blocks[i]->GetCollisionBox()))
 			{
 				//only process this collision if the player was rising into the block
-				if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())))
+				if ((mario->GetVelocity().y < 0.0f) && m_blocks[i]->isAvailable() && (mario->GetCenterPosition().x > m_blocks[i]->GetPosition().x) && (mario->GetCenterPosition().x < (m_blocks[i]->GetPosition().x + m_blocks[i]->GetWidth())) && (mario->GetPosition().y > m_blocks[i]->GetCenterPosition().y + DESTRUCTIBLE_TOLERANCE))
 				{
 					switch (m_blocks[i]->TakeHit())
 					{

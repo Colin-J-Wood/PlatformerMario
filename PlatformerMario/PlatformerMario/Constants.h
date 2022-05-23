@@ -29,6 +29,7 @@
 #define KOOPA_RESPAWN_TIME 2.0f
 
 #define COLLECTIBLE_RADIUS 16.0f
+#define DESTRUCTIBLE_TOLERANCE 4 //defines an amount of pixels the offset can be for a tile hit to not count
 
 #define DESTRUCTIBLE_RESPAWN_TIME 10.0f
 #define COLLECTIBLE_RESPAWN_TIME 30.0f
